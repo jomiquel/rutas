@@ -19,6 +19,9 @@
 	<meta property="og:type" content="website" />
 	<base href="<?php echo base_url(); ?>" />
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script type="text/javascript" src="assets/js/prototype.js"></script>
+	<script type="text/javascript" src="assets/js/lightbox.js"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="assets/css/lightbox.css" />
 	<?php 
 
 	if (isset($js)) foreach ($js as $script) 

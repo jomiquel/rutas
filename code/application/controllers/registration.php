@@ -5,37 +5,39 @@
 */
 class Registration extends MY_Controller
 {
-
 	/**
-	 * Constructor de la clase.
+	 * Constructor del controlador.
 	 *
 	 * @return void
-	 * @author 
+	 * @author Jorge Miquélez
 	 **/
 	function __construct()
 	{
+		// Constructor padre.
 		parent::__construct();
-	}
-	/**
-	 * Punto de entrada al controlador.
-	 */
-	function index()
-	{
-		redirect('registration/register');
+
+		// Carga de modelos
+		$this->load->model('users_model', 'users');
 	}
 
 
 	/**
-	 * Solicita el registro de un usuario.
+	 * SECCIÓN DE SOLICITUD DE REGISTRO DE USUARIO.
 	 */
+
+
+	/**
+	 * Solicita el registro de un nuevo usuario.
+	 *
+	 * @return void
+	 * @author Jorge Miquélez
+	 **/
 	function register()
 	{
-		if ( isset($_POST['email']) )
+		if ( isset($_POST['email']) && isset($_POST['password']) && isset($_POST['passconf']) )
 		{
 			if ( $this->_validate() )
 			{
-				$this->load->model('users_model', 'users');
-
 				// NOTA: En algún sitio hay que verificar que el usuario 
 				// no existe. La BS  dará un error si se intenta duplicar
 				// un email de usuario.
@@ -44,66 +46,119 @@ class Registration extends MY_Controller
 
 				if ( $this->users->register($user) )
 				{
-					$this->_send_email($user);
-					print_r2($this->email->print_debugger());
-					//redirect('registration/reg_progress', 'location');
-					return;
+					$this->session->set_flashdata('email_registered', $user->email);
+					redirect('registration/reg_progress', 'location');
+				}
+				else
+				{
+					// No es problema del usuario, se informa del error.
+					redirect('registration/reg_error', 'location');
 				}
 			}
 		}
 
 		// La autenticación debe realizarse de nuevo.
-		$this->load_view('registration/index');
+		$this->load->view('registration/index');
 	}
 
-
 	/**
-	 * Envía el correo de inicio de registro.
+	 * Muestra el progreso de la solicitud de registro de un usuario.
 	 *
-	 * @return boolean	TRUE si se envía el correo; 
-	 * FALSE en caso contrario.
+	 * @return void
 	 * @author Jorge Miquélez
 	 **/
-	private function _send_email($user)
-	{
-		$this->load->library('email');
-
-		$this->email->from('jorge.miquelez@jomiquel.net', 'Rutas, de jomiquel.net');
-		$this->email->to($user->email);
-		$this->email->subject('Registro en Rutas, de jomiquel.net');
-
-		$this->email->message('{unwrap}'.site_url('register/confirm_reg/?email='.$user->email.'&reg_code='.$user->reg_code.'{/unwrap}'));
-		
-		return $this->email->send();
-	}
-
-	/**
-	 * Access point para confirmar el registro de un usuario
-	 */
-	function confirm_reg()
-	{
-	}
-
-	/**
-	 * Muestra el preogreso correcto de la solicitud de registro.
-	 */
 	function reg_progress()
 	{
-		$this->load_view('registration/progress');
+		$data['email'] = $this->session->flashdata('email_registered');
+		$this->load_view('registration/reg_progress', $data);
 	}
 
+	/**
+	 * Muestra que se ha producido algún error de registro.
+	 *
+	 * @return void
+	 * @author Jorge Miquélez
+	 **/
+	function reg_error()
+	{
+		$this->load_view('registration/reg_error');
+	}
+
+	/**
+	 * Elimina un usuario de la aplicación.
+	 *
+	 * @return void
+	 * @author 
+	 **/
+	function unregister($user)
+	{
+		if ($this->users->unregister($user))
+			$this->load_view('registration/unreg_success');
+		else
+			$this->load_view('registration/unreg_error');
+	}
+
+
+	/**
+	 * FIN SECCIÓN DE SOLICITUD DE REGISTRO DE USUARIO.
+	 */
+
+	/**
+	 * SECCIÓN DE CONFIRMACIÓN DE REGISTRO DE USUARIOS.
+	 */
+
+	/**
+	 * Punto de acceso AJAX para confirmar el registro de un usuario.
+	 *
+	 * @return void
+	 * @author Jorge Miquélez
+	 **/
+	function confirm_reg()
+	{
+		if ( isset($_GET['email']) && isset($_GET['reg_code']))
+		{
+			if ( $this->users->confirm_reg( $_GET['email'], $_GET['reg_code']) )
+			{
+				// El usuario ha completado correctamente el registro.
+
+				// Hacer login con él
+
+				// Redirigir a lista.
+				print_r2("OK!!"); return;
+			}
+		}
+
+		// Se redirige al error de confirmación de registro.
+		$this->load_view('registration/confirm_error');
+	}
+
+	/**
+	 * FIN SECCIÓN DE CONFIRMACIÓN DE REGISTRO DE USUARIOS.
+	 */
+
+	/**
+	 * SECCIÓN DE VALIDACIÓN DE DATOS .
+	 */
+
+
+	/**
+	 * Valida los datos del formulario de solicitud de registro.
+	 *
+	 * @return boolean	El resultado de la validación del formulario.
+	 * @author Jorge Miquélez
+	 **/
 	private function _validate()
 	{
 		$config = array(
                array(
                      'field'   => 'email', 
                      'label'   => 'Correo electrónico', 
-                     'rules'   => 'trim|required|email'
+                     'rules'   => 'trim|required|valid_email|callback_email_exists_validation'
                   ),
                array(
                      'field'   => 'password', 
                      'label'   => 'Contaseña', 
-                     'rules'   => 'required|md5'
+                     'rules'   => 'required|min_length[5]|max_length[12]|md5'
                   ),
                array(
                      'field'   => 'passconf', 
@@ -116,6 +171,71 @@ class Registration extends MY_Controller
 
 		return $this->form_validation->run();
 	}
+
+
+	/**
+	 * Callback de validación de que no existe el correo dado de alta.
+	 *
+	 * @param	string	$email	Correo electrónico a validar.
+	 * @return boolean
+	 * @author Jorge Miquélez
+	 **/
+	function email_exists_validation($email)
+	{
+		if ( $this->email_exists( $email ) )
+			$this->form_validation->set_message('email_exists_validation', 'El correo electrónico \''.$email.'\' ya existe.');
+
+		return !$this->email_exists($email);
+	}
+
+
+	/**
+	 * FIN SECCIÓN DE VALIDACIÓN DE DATOS .
+	 */
+
+
+
+	/**
+	 * SECCIÓN DE COMPROBACIÓN DE EXISTENCIA DE USUARIOS YA REGISTRADOS
+	 */
+
+
+	/**
+	 * Determina si existe un email en la base de datos.
+	 *
+	 * @param	string	$email	Correo electrónico.
+	 * @return	boolean	TRUE, si existe el usuario; FALSE en caso contrario. Formato JSON.
+	 * @author Jorge Miquélez
+	 **/
+	private function email_exists($email)
+	{
+		return $this->users->email_exists( $email );
+	}
+
+
+	/**
+	 * Para llamar mediante AJAX, determina si existe un correo electrónico dado de alta en la bd.
+	 *
+	 * @return	void
+	 * @author	Jorge Miquélez
+	 **/
+	function get_email_exists()
+	{
+		if ( isset($_GET['email']) )
+		{
+			$e->email = $_GET['email'];
+			$e->exists = $this->email_exists( $e->email );
+		
+			echo json_encode( $e );
+		}
+	}
+
+	/**
+	 * FIN SECCIÓN DE COMPROBACIÓN DE EXISTENCIA DE USUARIOS YA REGISTRADOS
+	 */
+
+
+
 }
 
 /*** End of register.php ***/
