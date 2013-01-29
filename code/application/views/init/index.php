@@ -1,19 +1,14 @@
-<div id="description">
-
-Hola, caracola!!	
-
-
-</div><!-- end of #description -->
+<div id="description"><?php echo $this->lang->line('init_welcome_message'); ?></div>
+<!-- end of #description -->
 
 <div id="map_container">
-<div id="map_canvas">
-	
-</div>
-</div><!-- end of map_container -->
+	<div id="map_canvas"></div>
+	<!-- end of #map_canvas -->
 
-<div id="map_summary">
-	
+	<div id="map_summary"></div>
+	<!-- end of #map_summary -->
 </div>
+<!-- end of map_container -->
 
 <script type="text/javascript">
 

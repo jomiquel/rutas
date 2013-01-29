@@ -13,6 +13,13 @@ abstract class MY_Controller extends CI_Controller
 
 		$this->load->library('site_access');
 
+		// Idioma de la interfaz de usuario
+		$lang = $this->session->userdata('language');
+		if ($lang == null) $lang = $this->config->item('language');
+		$this->lang->load('routes', $lang);
+
+
+		
 		// lista de controladores que no necesitan login.
 		$unlocked = array('init', 'login', 'create', 'register');
 
@@ -43,7 +50,7 @@ abstract class MY_Controller extends CI_Controller
 	 */
 	public function load_view($view, $vars = array(), $return = FALSE)
 	{
-		$vars['content'] = $view;
+		$vars['interior'] = $view;
 		return $this->load->view('main_view', $vars, $return);
 	}
 

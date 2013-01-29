@@ -6,29 +6,29 @@
 
 		<table class="params">
 			<tr>
-				<td class="param_name">Usuario:</td>
+				<td class="param_name"><?php echo $this->lang->line('registration_username_label'); ?></td>
 				<td class="param_value">
 					<input type="text" name="email" value="<?php echo set_value('email'); ?>" onkeyup="checkEmailExists(this.value);" />
 					<span id="email_exists"></span>
 				</td>
 			</tr>
 			<tr>
-				<td class="param_name">Contraseña:</td>
+				<td class="param_name"><?php echo $this->lang->line('registration_password_label'); ?></td>
 				<td class="param_value">
 					<input type="password" name="password" />
 				</td>
 			</tr>
 			<tr>
-				<td class="param_name">Repetir contraseña:</td>
+				<td class="param_name"><?php echo $this->lang->line('registration_passconf_label'); ?></td>
 				<td class="param_value">
 					<input type="password" name="passconf" />
 				</td>
 			</tr>
 		</table>
 
-		<input type="submit" value="Aceptar" />
+		<input type="submit" value="<?php echo $this->lang->line('main_ok'); ?>" />
 
-		<input type="button" value="Cancelar" onclick="location.href='<?php echo site_url('init/index'); ?>'" />
+		<input type="button" value="<?php echo $this->lang->line('main_cancel'); ?>" onclick="location.href='<?php echo site_url('init/index'); ?>'" />
 
 	<ul id="logout_list">
 		<li><?php echo anchor('logout/logout_routine', 'login_logout');?></li>
@@ -44,7 +44,7 @@
 
 var callbackEmailExists = function(json) {
 	var e = jQuery.parseJSON(json);
-	if (e.exists) $('#email_exists').html('no válido');
+	if (e.exists) $('#email_exists').html('<?php echo $this->lang->line('registration_already_exists_label'); ?>');
 };
 
 var checkEmailExists = function(email) {

@@ -1,0 +1,24 @@
+/home/jorge/workspace/r2/rutas/code/application/language/spanish/routes_lang.php;/home/jorge/workspace/r2/rutas/code/application/language/english/routes_lang.php
+;;main
+main_ok;Aceptar;OK
+main_cancel;Cancelar;Cancel
+;;header
+header_title;Rutas por carretera;Road routes
+;;init
+init_caption;Inicio;Home
+init_welcome_message;Hola, caracola!!;Hi, my little snail!!
+;;login
+login_caption;Ingresar;Login
+;;Registration
+registration_email_field;Correo electrónico;Email
+registration_password_field;Contraseña;Password
+registration_passconf_field;Repetir contraseña;Confirm password
+registration_email_already_exists;El correo electrónico \\'%s\\' ya existe.;Email \\'%s\\' already exists.
+registration_username_label;Usuario;Username
+registration_password_label;Contraseña;Password
+registration_passconf_label;Repetir contraseña;Confirm password
+registration_already_exists_label;ya existe;already exists
+;;footer
+footer_contact;Contacto;Contact me
+footer_made_by;Rutas, realizado por jomiquel.net;Routes, made by jomiquel.net
+

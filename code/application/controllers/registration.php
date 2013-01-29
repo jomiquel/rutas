@@ -58,7 +58,7 @@ class Registration extends MY_Controller
 		}
 
 		// La autenticación debe realizarse de nuevo.
-		$this->load->view('registration/index');
+		$this->load_view('registration/index');
 	}
 
 	/**
@@ -152,17 +152,17 @@ class Registration extends MY_Controller
 		$config = array(
                array(
                      'field'   => 'email', 
-                     'label'   => 'Correo electrónico', 
+                     'label'   => $this->lang->line('registration_email_field'), 
                      'rules'   => 'trim|required|valid_email|callback_email_exists_validation'
                   ),
                array(
                      'field'   => 'password', 
-                     'label'   => 'Contaseña', 
+                     'label'   => $this->lang->line('registration_password_field'), 
                      'rules'   => 'required|min_length[5]|max_length[12]|md5'
                   ),
                array(
                      'field'   => 'passconf', 
-                     'label'   => 'Confirmar Contraseña', 
+                     'label'   => $this->lang->line('registration_passconf_field'), 
                      'rules'   => 'required|md5'
                   )
             );
@@ -183,7 +183,8 @@ class Registration extends MY_Controller
 	function email_exists_validation($email)
 	{
 		if ( $this->email_exists( $email ) )
-			$this->form_validation->set_message('email_exists_validation', 'El correo electrónico \''.$email.'\' ya existe.');
+			$this->form_validation->set_message('email_exists_validation',
+			sprintf ( $this->lang->line('registration_email_already_exists'), $email) );
 
 		return !$this->email_exists($email);
 	}
