@@ -10,25 +10,29 @@
 var callbackAjax = function(json)
 {
 	// Se decodifican los datos de la ruta.
-	var ruta = jQuery.parseJSON(json);
-	console.log(ruta.id);
+	var route = jQuery.parseJSON(json);
 
-	miCuadroRutas.cargarRuta(ruta, true);
-	$('#map_container').show(
-		'slow', 
-		function () { setTimeout(refreshMap, 5000); }
-	);
+	$('#map_summary').html('<h1>' + route.title + '</h1>');
+	cuadroRutas.showRoute(route);
+
+	setTimeout(refreshMap, 10000);
 };
 
 
 var refreshMap = function () 
 {
-	miCuadroRutas.init();
-	$('#map_container').hide('slow');
-	getRoute(callbackAjax);
+	getRoute(callbackAjax);;
 };
 
 
+
 $(document).ready(function($) {
+
+	// En la vista de inicio no se permite el control del mapa
+	cuadroRutas.mapOptions.zoomControl = false;
+	cuadroRutas.mapOptions.panControl = false;
+	cuadroRutas.mapOptions.streetViewControl = false;
+	cuadroRutas.mapOptions.mapTypeControl = false;
+
 	refreshMap();
 });
