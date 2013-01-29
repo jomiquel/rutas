@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Points_model extends CI_Model
+class Waypoints_model extends CI_Model
 {
 
 	/**
@@ -10,9 +10,9 @@ class Points_model extends CI_Model
 	 * @return void
 	 * @author 
 	 **/
-	function get_points($ruta_id)
+	function get_waypoints($ruta_id)
 	{
-		return $this->db->get_where('points', array('route_id'=>$ruta_id))->result();
+		return $this->db->get_where('waypoints', array('route_id'=>$ruta_id))->result();
 	}
 }
 

@@ -11,15 +11,7 @@ class Routes_model extends CI_Model
 	function __construct()
 	{
 		// Carga el modelo de puntos, necesario para completar la ruta.
-		$this->load->model('points_model', 'points');
-	}
-
-	/**
-	 * 
-	 */
-	function find($values)
-	{
-		return $this->_create_points($this->db->get_where('routes', $values)->result());
+		$this->load->model('waypoints_model', 'waypoints');
 	}
 
 	/**
@@ -44,7 +36,7 @@ class Routes_model extends CI_Model
 		$rutas = $this->db->get('routes', 1, $index)->result();
 
 		if (1 == count($rutas))
-			return $this->_create_points($rutas[0]);
+			return $this->_create_waypoints($rutas[0]);
 
 		return null;
 	}
@@ -60,7 +52,7 @@ class Routes_model extends CI_Model
 		$rutas = $this->db->get_where('routes', array('id'=>$id))->result();
 
 		if (1 == count($rutas))
-			return $this->_create_points($rutas[0]);
+			return $this->_create_waypoints($rutas[0]);
 
 		return null;
 	}
@@ -71,9 +63,9 @@ class Routes_model extends CI_Model
 	 * @param	object	Ruta de la que se buscan los puntos de paso.
 	 * @return	object	Ruta, con el array de puntos de paso.
 	 */
-	private function _create_points(&$ruta)
+	private function _create_waypoints(&$ruta)
 	{
-		$ruta->points = $this->points->get_points($ruta->id);
+		$ruta->waypoints = $this->waypoints->get_waypoints($ruta->id);
 		return $ruta;
 	}
 
