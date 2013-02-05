@@ -99,10 +99,10 @@ var cuadroRutas = {
 				if (cuadroRutas.onWaypointAdded != null) 
 					cuadroRutas.onWaypointAdded(
 					{
-						descripcion: locality,
+						location: locality,
 						lat: event.latLng.lat(),
 						lng: event.latLng.lng(),
-						mostrar: true
+						is_shown: true
 					});
 
 			}
@@ -192,8 +192,8 @@ var cuadroRutas = {
 					Math.min(r * (gmLibrary.MAX_N_WAYPOINTS + 1) + 10)));
 
 			// Se completan parámetros
-			request.avoidHighways = ((route.avoid_highways == 1) ? false:true);
-			request.avoidTolls =  ((route.avoid_tolls == 1) ? false:true);
+			request.avoidHighways = ((route.avoid_highways == 1) ? true:false);
+			request.avoidTolls =  ((route.avoid_tolls == 1) ? true:false);
 
 			// Se renderiza la sub-ruta.
 			cuadroRutas.renderRequest(request, renderer);
@@ -203,10 +203,10 @@ var cuadroRutas = {
 		cuadroRutas.showWaypoints(route);
 
 		// Se redmiensiona el mapa según corresponda.
-		if (resizeBounds) 
+		if (resizeBounds && ( 0 < route.waypoints.length ) )  
 			cuadroRutas.theMap.fitBounds(cuadroRutas.bounds);
-		else
-			cuadroRutas.theMap.fitBounds(cuadroRutas.getDoubleBounds());
+		/*else
+			cuadroRutas.theMap.fitBounds(cuadroRutas.getDoubleBounds());*/
 	},
 
 
@@ -240,7 +240,17 @@ var cuadroRutas = {
 
 					// Se rellena el resumen.
 					if (cuadroRutas.onDetailsUpdated != null)
-						cuadroRutas.onDetailsUpdated(cuadroRutas);
+					{
+						// cuadroRutas.onDetailsUpdated(cuadroRutas);
+						cuadroRutas.onDetailsUpdated(
+							{
+								origin: cuadroRutas.origin,
+								destination: cuadroRutas.destination,
+								duration: cuadroRutas.duration,
+								distance: cuadroRutas.distance
+							}
+						);
+					}
 				}
 						   
 			}
@@ -342,8 +352,10 @@ var cuadroRutas = {
 		{
 			var image = 'assets/images/marker' + orden + '.png';
 
-			if (0 == i) image = 'assets/images/marker_init.png';
+			// Si sólo hay un punto, se pinta sólo el init. Por eso se pone 
+			// primero el END, y si es caso se corrige con el INIT.
 			if (route.waypoints.length - 1 == i) image = 'assets/images/marker_end.png';
+			if (0 == i) image = 'assets/images/marker_init.png';
 
 			if ( (route.waypoints[i].is_shown != '0') || (0 == i) || (route.waypoints.length - 1 == i) )
 			{

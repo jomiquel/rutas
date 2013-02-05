@@ -1,9 +1,9 @@
 <div class="modal">
 
-	<p>
-		Se ha producido el registro, y se ha mandado un correo 
-		con las instrucciones para completar el registro<?php if (isset($email)) echo ' a '.$email; ?>.</p>
-	<input type="button" value="Aceptar" onclick="location.href='<?php echo site_url(); ?>'" />
+	<p><?php 
+		echo $this->lang->line('registration_progress');
+		if (isset($email)) echo ' '. $this->lang->line('to_label') .' '.$email; ?>.</p>
+	<?php echo anchor('', $this->lang->line('main_ok'), array('class' => 'button_style')); ?>
 
 </div>
 <!-- end of .modal -->

@@ -1,0 +1,28 @@
+TODO:
+
+
+- En la vista de lista, el botón de ver detalles no está alineado con el mapa.
+Esto es debido a que el #map.width = 495px (style.css:394) contiene a #map_canvas.width = 496px (style.css:404) más 2+2 px de borde rojo. Como #map.overflow debe ser none, el #map_canvas se va más a la derecha de lo que debería, y se desalinea con el botón de detalles.
+
+- Mejorar vista de mensajes de error.
+
+- Mensaje de bienvenida al sitio web.
+
+- Vista y menú de ayuda.
+
+- Vista y menú de contacto.
+
+- Vista de confirmación de logout.
+
+- Vistas de confirmación en modo modal(?)
+
+- Traducir y adaptar a idiomas los mensajes de vistas (que faltan muchos)
+
+- Adaptar la vista del formulario de contanto.
+
+- Barra de progreso en init, indicando cuando se carga nueva imagen.
+
+- Alguna manera de que "regresar" vaya a sitios concretos y no siempre a ''?
+
+
+

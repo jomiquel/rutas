@@ -17,6 +17,35 @@ class Users_model extends CI_Model
 {
 
 	/**
+	 *   SECCIÓN DE LOGIN DE USUARIOS
+	 */
+
+	/**
+	 * Comprueba si un login es correcto.
+	 *
+	 * @return mixed	Si el login es correcto, devuelve el usuario; FALSE en caso contrario.
+	 * @author Jorge Miquélez
+	 **/
+	function validate_login($email, $password)
+	{
+		$users = $this->db->get_where('users', array('email' => $email))->result();
+
+		if ( 1 == count($users) )
+		{
+			// El usuario está dado de alta.
+			// Hace falta que cuadre su email, y que haya completado el proceso de registro.
+			if ( ($password == $users[0]->password) && (USER_REGISTERED == $users[0]->status) ) 
+			{
+				// Se resetea el password del usuario antes de devolverlo al controlador.
+				$users[0]->password = '';
+				return $users[0];
+			}
+		}
+
+		return FALSE;
+	}
+
+	/**
 	 *   SECCIÓN DE REGISTRO DE USUARIOS
 	 */
 
@@ -143,8 +172,12 @@ class Users_model extends CI_Model
 		$this->email->to($user->email);
 		$this->email->subject('Registro en Rutas, de jomiquel.net');
 
-		$this->email->message('{unwrap}'.site_url('registration/confirm_reg/?email='.$user->email.'&reg_code='.$user->reg_code.'{/unwrap}'));
-		
+		$link = site_url('registration/confirm_reg/?email='.$user->email.'&reg_code='.$user->reg_code);
+
+		$message = sprintf($this->lang->line('registration_email_message'), $link, $link);
+
+		$this->email->message($message);
+
 		return $this->email->send();
 	}
 
@@ -167,6 +200,16 @@ class Users_model extends CI_Model
 		return ( 1 == count($users) );
 	}
 
+	/**
+	 * Devuelve el número de usuarios registrados.
+	 *
+	 * @return int
+	 * @author Jorge Miquélez
+	 **/
+	function get_count()
+	{
+		return $this->db->count_all('users');
+	}
 
 }
 

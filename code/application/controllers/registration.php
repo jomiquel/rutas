@@ -18,6 +18,8 @@ class Registration extends MY_Controller
 
 		// Carga de modelos
 		$this->load->model('users_model', 'users');
+
+		$this->form_validation->set_error_delimiters('<tr><td>&nbsp;</td><td><div class="error">', '</div></td></tr>');
 	}
 
 
@@ -38,9 +40,6 @@ class Registration extends MY_Controller
 		{
 			if ( $this->_validate() )
 			{
-				// NOTA: En algún sitio hay que verificar que el usuario 
-				// no existe. La BS  dará un error si se intenta duplicar
-				// un email de usuario.
 				$user->email = $this->input->post('email');
 				$user->password = $this->input->post('password');
 
@@ -58,7 +57,9 @@ class Registration extends MY_Controller
 		}
 
 		// La autenticación debe realizarse de nuevo.
-		$this->load_view('registration/index');
+		$data['css'][] = 'assets/css/registration/registration.css';
+		$data['js'][] = 'assets/js/registration/registration.js';
+		$this->load_view('registration/index', $data);
 	}
 
 	/**
@@ -117,14 +118,14 @@ class Registration extends MY_Controller
 	{
 		if ( isset($_GET['email']) && isset($_GET['reg_code']))
 		{
-			if ( $this->users->confirm_reg( $_GET['email'], $_GET['reg_code']) )
+			$user = $this->users->confirm_reg( $_GET['email'], $_GET['reg_code']);
+			if ( $user )
 			{
 				// El usuario ha completado correctamente el registro.
 
 				// Hacer login con él
-
-				// Redirigir a lista.
-				print_r2("OK!!"); return;
+				$this->site_access->login_routine($user);
+				redirect('routes/');
 			}
 		}
 
@@ -152,17 +153,17 @@ class Registration extends MY_Controller
 		$config = array(
                array(
                      'field'   => 'email', 
-                     'label'   => $this->lang->line('registration_email_field'), 
-                     'rules'   => 'trim|required|valid_email|callback_email_exists_validation'
+                     'label'   => $this->lang->line('email_label'), 
+                     'rules'   => 'trim|required|valid_email|is_unique[users.email]'
                   ),
                array(
                      'field'   => 'password', 
-                     'label'   => $this->lang->line('registration_password_field'), 
-                     'rules'   => 'required|min_length[5]|max_length[12]|md5'
+                     'label'   => $this->lang->line('password_label'), 
+                     'rules'   => 'required|min_length[5]|max_length[12]|matches[passconf]|md5'
                   ),
                array(
                      'field'   => 'passconf', 
-                     'label'   => $this->lang->line('registration_passconf_field'), 
+                     'label'   => $this->lang->line('passconf_label'), 
                      'rules'   => 'required|md5'
                   )
             );
@@ -170,23 +171,6 @@ class Registration extends MY_Controller
 		$this->form_validation->set_rules($config);
 
 		return $this->form_validation->run();
-	}
-
-
-	/**
-	 * Callback de validación de que no existe el correo dado de alta.
-	 *
-	 * @param	string	$email	Correo electrónico a validar.
-	 * @return boolean
-	 * @author Jorge Miquélez
-	 **/
-	function email_exists_validation($email)
-	{
-		if ( $this->email_exists( $email ) )
-			$this->form_validation->set_message('email_exists_validation',
-			sprintf ( $this->lang->line('registration_email_already_exists'), $email) );
-
-		return !$this->email_exists($email);
 	}
 
 
@@ -235,6 +219,18 @@ class Registration extends MY_Controller
 	 * FIN SECCIÓN DE COMPROBACIÓN DE EXISTENCIA DE USUARIOS YA REGISTRADOS
 	 */
 
+	/**
+	 * Devuelve los items del menú para la vista.
+	 *
+	 * @return void
+	 * @author Jorge Miquélez
+	 **/
+	protected function _get_menu(&$vars)
+	{
+		$vars['menu'][$this->lang->line('init_label')] = '';
+		$vars['menu'][$this->lang->line('create_route')] = 'crup/create';
+		parent::_get_menu($vars);
+	}
 
 
 }

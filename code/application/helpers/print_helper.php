@@ -2,7 +2,7 @@
 
 function print_r2($val, $caption=null)
 {
-	if ($caption) echo '<!-- '.$caption.' -->'."\n";
+	if ($caption) echo '<h1> '.$caption.' </h1>'."\n";
 	echo "<pre>\n";
 	print_r($val);
 	echo "</pre>\n";

@@ -1,45 +1,80 @@
 #!/bin/bash
+
+# Absolute path to this script
+RUTA=`readlink -f $0`
+CARPETA=`dirname $RUTA`
+
+
 while IFS=\; read col1 col2 col3
 do
 
-	if [ "" == "$ES_FILE" ]; then
-		
-		ES_FILE="${col1}"
-		EN_FILE="${col2}"
+	if [ "" != "${col3}" ]; then
 
-		echo "<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');" > $ES_FILE 
-		echo >> $ES_FILE
-		echo >> $ES_FILE
 
-		echo "<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');" > $EN_FILE
-		echo >> $EN_FILE
-		echo >> $EN_FILE
+		if [ "" == "$ES_PHP_FILE" ]; then
+			
+			ES_PHP_FILE="${col2}"
+			EN_PHP_FILE="${col3}"
 
-	else
+			echo $ES_PHP_FILE
+			echo $EN_PHP_FILE
 
-		if [ "" == "${col1}" ]; then
-			echo >> $ES_FILE
-			echo "/**" >> $ES_FILE
-			echo " *   Sección ${col3}" >> $ES_FILE
-			echo " */ " >> $ES_FILE
+			echo "<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');" > $ES_PHP_FILE 
+			echo >> $ES_PHP_FILE
+			echo >> $ES_PHP_FILE
 
-			echo >> $EN_FILE
-			echo "/**" >> $EN_FILE
-			echo " *   Sección ${col3}" >> $EN_FILE
-			echo " */ " >> $EN_FILE
+			echo "<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');" > $EN_PHP_FILE
+			echo >> $EN_PHP_FILE
+			echo >> $EN_PHP_FILE
 
 		else
 
-			echo "\$lang['${col1}'] = '${col2}';" >> $ES_FILE
-  			echo "\$lang['${col1}'] = '${col3}';" >> $EN_FILE
+			if [ "" == "$ES_JS_FILE" ]; then
+
+				ES_JS_FILE="${col2}"
+				EN_JS_FILE="${col3}"
+
+				echo $ES_JS_FILE
+				echo $EN_JS_FILE
+
+				echo "var getLanguage = function(key) {	line = { " > $ES_JS_FILE 
+				echo "var getLanguage = function(key) {	line = { " > $EN_JS_FILE 
+
+			else
+
+				if [ "" == "${col1}" ]; then
+
+					echo >> $ES_PHP_FILE
+					echo "/**" >> $ES_PHP_FILE
+					echo " *   Sección ${col3}" >> $ES_PHP_FILE
+					echo " */ " >> $ES_PHP_FILE
+
+					echo >> $EN_PHP_FILE
+					echo "/**" >> $EN_PHP_FILE
+					echo " *   Sección ${col3}" >> $EN_PHP_FILE
+					echo " */ " >> $EN_PHP_FILE
+
+				else
+
+					echo "\$lang['${col1}'] = '${col2}';" >> $ES_PHP_FILE
+					echo "'${col1}':'${col2}'," >> $ES_JS_FILE
+
+		  			echo "\$lang['${col1}'] = '${col3}';" >> $EN_PHP_FILE
+					echo "'${col1}' : '${col3}'," >> $EN_JS_FILE
+
+			  	fi
+			fi
 	  	fi
-  	fi
-done < languages.csv
 
-echo >> $ES_FILE
-echo >> $ES_FILE
-echo "/*** End of file $ES_FILE ***/" >> $ES_FILE
+	fi
+done < "$CARPETA"/languages.csv
 
-echo >> $EN_FILE
-echo >> $EN_FILE
-echo "/*** End of file $EN_FILE ***/" >> $EN_FILE
+echo >> $ES_PHP_FILE
+echo >> $ES_PHP_FILE
+echo "/*** End of file $ES_PHP_FILE ***/" >> $ES_PHP_FILE
+echo "};return line[key];};" >> $ES_JS_FILE
+
+echo >> $EN_PHP_FILE
+echo >> $EN_PHP_FILE
+echo "/*** End of file $EN_PHP_FILE ***/" >> $EN_PHP_FILE
+echo "};return line[key];};" >> $EN_JS_FILE

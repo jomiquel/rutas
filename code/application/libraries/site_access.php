@@ -1,84 +1,85 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 /*
-* Site Sentry security library for Code Igniter applications
-* Author: James Nicol, Glossopteris Web Designs & Development, www.glossopteris.com, April 2006
+* Site access security library, based on Site Sentry security library for Code Igniter applications,
+* by James Nicol, Glossopteris Web Designs & Development, www.glossopteris.com, April 2006
 *
-* Modified very heavily for BambooINVOICE 
+* Author: Jorge Miquélez
 */
 
+/**
+ * Librería de gestión de acceso al sitio.
+ *
+ * @package default
+ * @author 
+ **/
 class Site_access 
 {
-
+	/**
+	 * Constructor de la clase.
+	 *
+	 * @return void
+	 * @author Jorge Miquélez
+	 **/
 	function __construct()
 	{
+		// Se obtiene una instancia de CI, para poder manejar su session.
 		$this->obj =& get_instance();
 	}
 
-	function is_logged()
+	/**
+	 * Devuelve si el sitio tiene un usuario logueado.
+	 *
+	 * @return boolean	TRUE si hay usuario logueado; FALSE en caso contrario.
+	 * @author Jorge Miquélez
+	 **/
+	function is_logged_in()
 	{
-		return TRUE;
-		/*
-		if ($this->obj->session) {
+		if ( $this->get_user() ) return TRUE;
 
-			//If user has valid session, and such is logged in
-			if ($this->obj->session->userdata('logged_in'))
-			{
-				return TRUE;
-			}
-			else
-			{
-				return FALSE;
-			}
-		}
-		else
-		{
-			return FALSE;
-		}
-		*/
+		return FALSE;
 	} 
 
-	function login_routine()
+	/**
+	 * Rutina de logueo de un usuario.
+	 *
+	 * @return void
+	 * @author Jorge Miquélez
+	 **/
+	function login_routine($user)
 	{
-		/*
-		//Initialise the Encryption Library
-		$this->obj->load->library('encrypt');
+		$this->obj->session->set_userdata('logged_in_user', $user);
+	}
 
-		//Make the input username and password into variables
-		$password = $this->obj->input->post('password');
-		$username = $this->obj->input->post('username');
 
-		//Use the input username and password and check against 'users' table
-		$this->obj->db->where('access_level != 0');
-		$query = $this->obj->db->get('clientcontacts');
+	/**
+	 * Rutina de salida de un usuario.
+	 *
+	 * @return void
+	 * @author Jorge Miquélez
+	 **/
+	function logout_routine()
+	{
+		$this->obj->session->unset_userdata('logged_in_user');
+	}
 
-		$login_result = FALSE;
-		foreach($query->result() as $row)
+	/**
+	 * Devuelve el usuario logueado en el sistema
+	 *
+	 * @return	object	El usuario logueado; FALSE si no hay usuario logueado.
+	 * @author	Jorge Miquélez
+	 **/
+	function get_user()
+	{
+		if ($this->obj->session)
 		{
-			if($row->email == $username && $this->obj->encrypt->decode("$row->password") == $password && $row->access_level !=0)
-			{
-				$login_result = TRUE;
-				$id = $row->id;
-				$this->obj->db->where('id', $id);
-				$this->obj->db->set('password_reset', '');
-				$this->obj->db->update('clientcontacts'); // if they have successfully logged in, we don't need that anymore
-			}
+			//If user has valid session, and such is logged in
+			$user = $this->obj->session->userdata('logged_in_user');
+
+			if ( $user ) return $user;
 		}
 
-		//If username and password match set the logged in flag in 'ci_sessions'
-		if ($login_result==1)
-		{
-			$credentials = array('user_id' => $id, 'logged_in' => $login_result);
-			$this->obj->session->set_userdata($credentials);
-			//On success redirect user to default page
-			redirect('','location');
-		}
-		else
-		{
-			//On error send user back to login page, and add error message
-			redirect('login/login_fail/');
-		}
-		*/
+		return FALSE;		
 	}
 }
 

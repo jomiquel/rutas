@@ -3,7 +3,7 @@
 	<p>Se ha procedido a la baja del registro de la dirección 
 		de correo indicada<?php if (isset($email)) echo ', \''.$email.'\'' ?>.
 	</p>
-	<input type="button" value="Aceptar" onclick="location.href='<?php echo site_url(); ?>'" />
+	<?php echo anchor('', $this->lang->line('main_ok'), array('class' => 'button_style')); ?>
 
 </div>
 <!-- end of .modal -->

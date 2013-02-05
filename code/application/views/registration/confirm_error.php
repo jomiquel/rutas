@@ -1,4 +1,4 @@
 <div class="modal">
-	<p>No se ha podido confirmar el registro solicitado.</p>
-	<input type="button" value="Aceptar" onclick="location.href='<?php echo site_url(); ?>'" />
+	<p><?php echo $this->lang->line('confirm_error'); ?></p>
+	<?php echo anchor('', $this->lang->line('main_ok'), array('class' => 'button_style')); ?>
 </div><!-- end of .modal -->
