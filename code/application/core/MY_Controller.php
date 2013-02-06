@@ -64,9 +64,12 @@ abstract class MY_Controller extends CI_Controller
 	 */
 	public function load_view($view, $vars = array(), $return = FALSE)
 	{
+		// Configuración de la vista.
 		$vars['interior'] = $view;
 		$vars['languages'] = $this->_get_languages();
 		$vars['menu'] = array();
+		$vars['js'] = $this->_get_reduce_js($vars);
+		$vars['css'] = $this->_get_reduce_css($vars);
 
 		// Muestra el número de usuarios en pantalla
 		$this->load->model('users_model', '__u__');
@@ -130,6 +133,92 @@ abstract class MY_Controller extends CI_Controller
 			$vars['menu'][ucfirst($this->lang->line('register_label'))] = 'registration/register';
 		}
 
+	}
+
+	/**
+	 * Devuelve el array de scripts por defecto del sitio,
+	 * adaptado al entorno de ejecución.
+	 *
+	 * @return array	Array con las rutas a los js.
+	 * @author Jorge Miquélez
+	 **/
+	private function _get_reduce_js($vars)
+	{
+		$result = $this->_get_js();
+
+		if ( isset($vars['js']) ) $result = array_merge( $result, $vars['js'] );
+
+		if ( ENVIRONMENT == 'production' )
+		{
+			foreach ($result as $value)
+			{
+				if ( strpos(strtolower($value), 'http') !== 0 )
+					$result = str_replace('.js', '.red.js', $result);
+			}
+		}
+
+		return $result;
+	}
+
+
+	/**
+	 * Devuelve el array de scripts por defecto del sitio,
+	 * adaptado al entorno de ejecución.
+	 *
+	 * @return array	Array con las rutas a los js.
+	 * @author Jorge Miquélez
+	 **/
+	private function _get_reduce_css($vars)
+	{
+		$result = $this->_get_css();
+
+		if ( isset($vars['css']) ) $result = array_merge( $result, $vars['css'] );
+
+		if ( ENVIRONMENT == 'production' )
+		{
+			foreach ($result as $value)
+			{
+				if ( strpos(strtolower($value), 'http') !== 0 )
+					$result = str_replace('.css', '.red.css', $result);
+			}
+		}
+
+		return $result;
+	}
+
+
+	/**
+	 * Devuelve el array de scripts por defecto del sitio. En las clases
+	 * derivadas debe llamarse primero a parent::_get_js() y después añadir 
+	 * los js que necesite el controlador derivado.
+	 *
+	 * @return array	Array con las rutas a los js.
+	 * @author Jorge Miquélez
+	 **/
+	protected function _get_js()
+	{
+		return array(
+			'http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js',
+			'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js',
+			'assets/js/window.js'
+			);
+	}
+
+	/**
+	 * Devuelve el array de stylesheets por defecto del sitio. En las clases
+	 * derivadas debe llamarse primero a parent::_get_css() y después añadir 
+	 * los css que necesite el controlador derivado.
+	 *
+	 * @return array	Array con las rutas a los css.
+	 * @author Jorge Miquélez
+	 **/
+	protected function _get_css()
+	{
+		return array(
+			'assets/css/button.css',
+			'assets/css/lightbox.css',
+			'assets/css/style.css'
+			);
 	}
 
 

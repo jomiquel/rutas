@@ -23,22 +23,13 @@
 	<meta property="og:url" content="<?php echo site_url(); ?>" />
 	<meta property="og:type" content="website" />
 	<base href="<?php echo base_url(); ?>" />
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-	<script src="assets/js/window.min.js"></script>
-	<link rel="stylesheet" type="text/css" media="all" href="assets/css/button.css" />
-	
-	<!-- script type="text/javascript" src="assets/js/jquery.min.js"></script -->
-	<!-- script type="text/javascript" src="assets/js/prototype.js"></script>
-	<script type="text/javascript" src="assets/js/lightbox.js"></script -->
-	<link rel="stylesheet" type="text/css" media="all" href="assets/css/lightbox.css" />
-	<link rel="stylesheet" type="text/css" media="all" href="assets/css/style.css" />
+
 	<?php 
 
 	if (isset($js)) foreach ($js as $script) 
 		{
 			?>
-			<script type="text/javascript" src="<?php echo str_replace('.js', '.min.js', $script); ?>"></script>
+			<script type="text/javascript" src="<?php echo $script; ?>"></script>
 			<?php
 		}
 

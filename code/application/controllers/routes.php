@@ -28,14 +28,8 @@ class Routes extends MY_Controller
 	{
 		// Se leen las rutas del model.
 		$data['routes'] = $this->routes->get_list($this->logged_user, $offset, $this->routes_per_page);
-
-		// Se cargan las opciones de la vista.
-		$data['js'][] = 'https://maps.googleapis.com/maps/api/js?sensor=false';
-		$data['js'][] = 'assets/js/google.js';
-		$data['js'][] = 'assets/js/cuadro_rutas.js';
 		$data['js'][] = 'assets/js/routes/list.js';
 		$data['css'][] = 'assets/css/routes/list.css';
-
 		$data['pagination'] = $this->_get_pagination();
 
 		// Se muestra la vista.
@@ -74,10 +68,6 @@ class Routes extends MY_Controller
 
 		if ( ! $data['route'] ) redirect('');
 
-		// Se cargan las opciones de la vista.
-		$data['js'][] = 'https://maps.googleapis.com/maps/api/js?sensor=false';
-		$data['js'][] = 'assets/js/google.js';
-		$data['js'][] = 'assets/js/cuadro_rutas.js';
 		$data['js'][] = 'assets/js/routes/view.js';
 		$data['css'][] = 'assets/css/routes/view.css';
 
@@ -156,6 +146,25 @@ class Routes extends MY_Controller
 		$vars['menu'][$this->lang->line('create_route')] = 'crup/create';
 
 		parent::_get_menu($vars);
+	}
+
+
+	/**
+	 * Devuelve el array de Javascripts específico para este controlador.
+	 *
+	 * @return array	Array con las rutas a los css.
+	 * @author Jorge Miquélez
+	 **/
+	protected function _get_js()
+	{
+		return array_merge(
+			parent::_get_js(),
+			array(
+				'https://maps.googleapis.com/maps/api/js?sensor=false',
+				'assets/js/google.js',
+				'assets/js/cuadro_rutas.js'
+				)
+			);
 	}
 
 }

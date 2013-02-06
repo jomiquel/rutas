@@ -45,8 +45,7 @@ class Contact extends MY_Controller
 			}
 		}
 
-		$data['css'][] = 'assets/css/contact/contact.css';
-		$this->load_view('contact/index', $data);
+		$this->load_view('contact/index');
 
 	}
 
@@ -137,6 +136,22 @@ class Contact extends MY_Controller
 		$vars['menu'][$this->lang->line('init_label')] = '';
 		$vars['menu'][$this->lang->line('create_route')] = 'crup/create';
 		parent::_get_menu($vars);
+	}
+
+	/**
+	 * Devuelve el array de stylesheets específico para este controlador.
+	 *
+	 * @return array	Array con las rutas a los css.
+	 * @author Jorge Miquélez
+	 **/
+	protected function _get_css()
+	{
+		return array_merge(
+			parent::_get_css(),
+			array(
+				'assets/css/contact/contact.css'
+				)
+			);
 	}
 
 }

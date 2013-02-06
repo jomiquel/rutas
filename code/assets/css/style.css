@@ -115,6 +115,12 @@ a:hover {
     height:30px;
 }
 
+:focus {
+    box-shadow: 0px 0px 7px #0080ff inset;
+    -webkit-box-shadow: 0px 0px 7px #0080ff inset;
+    -moz-box-shadow: 0px 0px 7px #0080ff inset;
+}
+
 
 /* CLASES GENERALES */
 

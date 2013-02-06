@@ -17,14 +17,7 @@ class Init extends MY_Controller
 		// Si se trata de un usuario loqueado, entonces se redirige a la lista de rutas.
 		if ( $this->site_access->is_logged_in() ) redirect('routes/');
 
-
-		$data['js'][] = 'https://maps.googleapis.com/maps/api/js?sensor=false';
-		$data['js'][] = 'assets/js/google.js';
-		$data['js'][] = 'assets/js/cuadro_rutas.js';
-		$data['js'][] = 'assets/js/init/script.js';
-		$data['css'][] = 'assets/css/init/style.css';
-
-		$this->load_view('init/index', $data);
+		$this->load_view('init/index');
 	}
 
 	/**
@@ -56,6 +49,45 @@ class Init extends MY_Controller
 		$vars['menu'][$this->lang->line('create_route')] = 'crup/create';
 		parent::_get_menu($vars);
 	}
+
+
+	/**
+	 * Devuelve el array de stylesheets específico para este controlador.
+	 *
+	 * @return array	Array con las rutas a los css.
+	 * @author Jorge Miquélez
+	 **/
+	protected function _get_css()
+	{
+		return array_merge(
+			parent::_get_css(),
+			array(
+				'assets/css/init/style.css'
+				)
+			);
+	}
+
+
+	/**
+	 * Devuelve el array de Javascripts específico para este controlador.
+	 *
+	 * @return array	Array con las rutas a los css.
+	 * @author Jorge Miquélez
+	 **/
+	protected function _get_js()
+	{
+		return array_merge(
+			parent::_get_js(),
+			array(
+				'https://maps.googleapis.com/maps/api/js?sensor=false',
+				'assets/js/google.js',
+				'assets/js/cuadro_rutas.js',
+				'assets/js/init/script.js'
+				)
+			);
+	}
+
+
 }
 
 /*** End of file init.php***/

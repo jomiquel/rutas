@@ -6,13 +6,6 @@
 class Crup extends MY_Controller
 {
 	/**
-	 * Datos que se pasan a las vistas.
-	 *
-	 * @var array
-	 **/
-	var $view_data;
-
-	/**
 	 * Constructor de la clase.
 	 *
 	 * @return void
@@ -25,14 +18,8 @@ class Crup extends MY_Controller
 		$this->load->model('routes_model', 'routes');
 
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-
-		$this->view_data['js'][] = 'https://maps.googleapis.com/maps/api/js?sensor=false';
-		$this->view_data['js'][] = 'assets/js/google.js';
-		$this->view_data['js'][] = 'assets/js/cuadro_rutas.js';
-		$this->view_data['js'][] = 'assets/js/crup/edit.js';
-		$this->view_data['js'][] = 'assets/js/language/'.$this->language.'.js';
-		$this->view_data['css'][] = 'assets/css/crup/edit.css';
 	}
+
 
 	/**
 	 * Crea una nueva ruta.
@@ -124,7 +111,7 @@ class Crup extends MY_Controller
 			}
 		}
 
-		$this->load_view('crup/edit', $this->view_data);
+		$this->load_view('crup/edit');
 
 	}
 
@@ -170,6 +157,45 @@ class Crup extends MY_Controller
 		$vars['menu'][$this->lang->line('init_label')] = '';
 		parent::_get_menu($vars);
 	}
+
+
+	/**
+	 * Devuelve el array de stylesheets específico para este controlador.
+	 *
+	 * @return array	Array con las rutas a los css.
+	 * @author Jorge Miquélez
+	 **/
+	protected function _get_css()
+	{
+		return array_merge(
+			parent::_get_css(),
+			array(
+				'assets/css/crup/edit.css'
+				)
+			);
+	}
+
+
+	/**
+	 * Devuelve el array de Javascripts específico para este controlador.
+	 *
+	 * @return array	Array con las rutas a los css.
+	 * @author Jorge Miquélez
+	 **/
+	protected function _get_js()
+	{
+		return array_merge(
+			parent::_get_js(),
+			array(
+				'https://maps.googleapis.com/maps/api/js?sensor=false',
+				'assets/js/google.js',
+				'assets/js/cuadro_rutas.js',
+				'assets/js/crup/edit.js',
+				'assets/js/language/'.$this->language.'.js'
+				)
+			);
+	}
+
 
 }
 
