@@ -124,46 +124,89 @@ var changeWaypointLocation = function(sender)
 	}
 };
 
+
+/**
+ * Adelanta la posición de un waypoint en la ruta.
+ *
+ * @param	{DOMElement}	sender	Elemento td. que lanza el evento.
+ * @author	Jorge Miquélez
+ **/ 
 var upWaypoint = function(sender)
 {
+	// El sender es una td. Se obtiene la tr 
+	// a la que pertenece.
 	var tr = sender.parentNode;
+
+	// Tabla.
 	var table = tr.parentNode;
 
-	if (tr.sectionRowIndex > 0)
+	// Hay que comprobar que no es la primera tr.
+	if ( tr.sectionRowIndex > 0 )
 	{
-		trSupHTML = table.rows[tr.sectionRowIndex - 1].outerHTML;
-//			console.log(trSupHTML);
-		table.rows[tr.sectionRowIndex - 1].outerHTML = tr.outerHTML;
-		tr.outerHTML = trSupHTML;
+		// TR anterior.
+		trSuperior = table.rows[tr.sectionRowIndex - 1];
 
-		refreshWaypoints();
+		// Hago el swap
+		$(trSuperior).fadeOut('slow', function() {
+			$(trSuperior).insertAfter($(tr)).fadeIn('slow');
 
-		setRoute();
+			refreshWaypoints();
 
-		hasChanges = true;
+			setRoute();
+
+			hasChanges = true;	
+		});
+
 	}
 
-};
 
-var downWaypoint = function(sender)
+}
+
+
+
+/**
+ * Retrasa la posición de un waypoint en la ruta.
+ *
+ * @param	{DOMElement}	sender	TD que lanza el evento.
+ * @author	Jorge Miquélez
+ **/
+var downWaypoint = function(sender) 
 {
+	// El sender es una td. Se obtiene la tr 
+	// a la que pertenece.
 	var tr = sender.parentNode;
+
+	// Tabla.
 	var table = tr.parentNode;
 
-	if (tr.sectionRowIndex < table.rows.length - 1)
+	// Hay que comprobar que no es la última tr.
+	if ( tr.sectionRowIndex < table.rows.length - 1)
 	{
-		trSupHTML = table.rows[tr.sectionRowIndex + 1].outerHTML;
-		table.rows[tr.sectionRowIndex + 1].outerHTML = tr.outerHTML;
-		tr.outerHTML = trSupHTML;
+		// TR posterior.
+		trAnterior = table.rows[tr.sectionRowIndex + 1];
 
-		refreshWaypoints();
+		// Hago el swap
+		$(trAnterior).fadeOut('slow', function() {
+			$(trAnterior).insertBefore($(tr)).fadeIn('slow');
 
-		setRoute();
+			refreshWaypoints();
 
-		hasChanges = true;
+			setRoute();
+
+			hasChanges = true;	
+		});
+
 	}
+
 };
 
+
+/**
+ * Cambia el estado de un waypoint de mostrar a no-mostrar.
+ *
+ * @param	{DOMElement}	sender	TD que envía el evento.
+ * @author	Jorge Miquélez
+ **/
 var changeWaypointIsShown = function(sender)
 {
 	var tr = sender.parentNode;
@@ -176,6 +219,14 @@ var changeWaypointIsShown = function(sender)
 	hasChanges = true;
 };
 
+
+/**
+ * Elimina un waypoint de la ruta, previa solicitud
+ * de confirmación.
+ *
+ * @param	{DOMElement}	sender	TD que envía el evento.
+ * @author	Jorge Miquélez
+ **/
 var deleteWaypoint = function(sender)
 {
 	var tr = sender.parentNode;
@@ -193,6 +244,13 @@ var deleteWaypoint = function(sender)
 	}
 };
 
+
+/**
+ * Añade un nuevo waypoint a la ruta.
+ *
+ * @param	{object}	waypoint	Objeto de tipo waypoint.
+ * @author	Jorge Miquélez
+ **/
 var addWaypoint = function(waypoint)
 {
 	// Se añade la información del punto a la tabla.
@@ -212,6 +270,13 @@ var addWaypoint = function(waypoint)
 	hasChanges = true;
 };
 
+
+/**
+ * Muestra una ruta en el canvas del mapa.
+ *
+ * @param	{string}	json	Objeto de tipo route, codificado en JSON.
+ * @author	Jorge Miquélez
+ **/
 var showRoute = function(json)
 {
 	// Se decodifican los datos de la ruta.
@@ -220,11 +285,21 @@ var showRoute = function(json)
 	cuadroRutas.showRoute(route, true);
 };
 
+
 var hasChanges = false;
+
 var isSubmiting = false;
+
 var	isDownloading = false;
 
 
+/**
+ * Callback para atender al intento de cierre de la ventana.
+ *
+ * @param	{DOMEvent}	event	Evento de solicitud de cierre de ventana activa.
+ * @return	{boolean}	TRUE si el usuario confirma el cierre; FALSE en caso contrario.
+ * @author	Jorge Miquélez
+ **/
 var callbackUnload = function(event)
 {
 	if (hasChanges && ! isSubmiting && ! isDownloading)
