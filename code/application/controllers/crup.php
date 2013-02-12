@@ -85,25 +85,25 @@ class Crup extends MY_Controller
 	 **/
 	private function _cruping($action)
 	{
-		$this->view_data['form_action'] = 'crup/' . $action;
+		$data['form_action'] = 'crup/' . $action;
 
-		if ('edit' == $action) $this->view_data['route'] = $this->_get_actual_route();
-		else $this->view_data['route'] = $this->_get_new_route();
+		if ('edit' == $action) $data['route'] = $this->_get_actual_route();
+		else $data['route'] = $this->_get_new_route();
 
-		if ( ! $this->view_data['route'] ) redirect('');
+		if ( ! $data['route'] ) redirect('');
 
 		if ( isset($_POST['route']) )
 		{
-			$this->view_data['route'] = json_decode($_POST['route']);
+			$data['route'] = json_decode($_POST['route']);
 
 			if ( $this->_validate() )
 			{
-				if ( $this->routes->update($this->view_data['route']) )
+				if ( $this->routes->update($data['route']) )
 				{
 					// Se guarda el identificador en la session.
 					// No sería necesario en caso de edición, pero sí
 					// en caso de creación de una nueva ruta.
-					$this->session->set_userdata('route_id', $this->view_data['route']->id);
+					$this->session->set_userdata('route_id', $data['route']->id);
 
 					// Vamos a ver la ruta.
 					redirect('routes/view');
@@ -111,7 +111,7 @@ class Crup extends MY_Controller
 			}
 		}
 
-		$this->load_view('crup/edit');
+		$this->load_view('crup/edit', $data);
 
 	}
 
