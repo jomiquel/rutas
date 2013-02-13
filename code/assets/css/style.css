@@ -116,9 +116,10 @@ a:hover {
 }
 
 :focus {
-    box-shadow: 0px 0px 7px #0080ff inset;
-    -webkit-box-shadow: 0px 0px 7px #0080ff inset;
-    -moz-box-shadow: 0px 0px 7px #0080ff inset;
+    border-color: #0080ff;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05) inset, 0px 0px 8px rgba(0, 128, 255, 0.6);
+    -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05) inset, 0px 0px 8px rgba(0, 128, 255, 0.6);
+    -moz-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05) inset, 0px 0px 8px rgba(0, 128, 255, 0.6);
 }
 
 
