@@ -168,6 +168,7 @@ $(function()
 
 	$( "#login" )
 		.click(function() {
+			tips.html( "" );
 			$( "#login-form" ).dialog( "open" );
 		});
 		
