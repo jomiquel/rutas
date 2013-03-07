@@ -1,7 +1,7 @@
 
 
 <div id="logo">
-	<img src="assets/images/logo_<?php echo $this->language; ?>.png">
+	<img src="assets/images/logo_<?php echo $language; ?>.png">
 </div> <!-- end of #logo -->
 
 

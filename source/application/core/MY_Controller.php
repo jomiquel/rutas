@@ -14,13 +14,6 @@ abstract class MY_Controller extends CI_Controller
 	var $logged_user;
 
 	/**
-	 * Idioma usado en la interfaz
-	 *
-	 * @var string
-	 **/
-	var $language;
-
-	/**
 	 * Constructor de la clase abstracta.
 	 *
 	 * @return void
@@ -33,9 +26,7 @@ abstract class MY_Controller extends CI_Controller
 		$this->form_validation->set_error_delimiters('<tr><td>&nbsp;</td><td><div class="error">', '</div></td></tr>');
 
 		// Idioma de la interfaz de usuario
-		$this->language = $this->session->userdata('language');
-		if ($this->language == null) $this->language = $this->config->item('language');
-		$this->lang->load('routes', $this->language);
+		$this->lang->load('routes', $this->_get_language());
 		
 		// lista de controladores que no necesitan login.
 		$unlocked = array('init', 'login', 'registration', 'help', 'contact', 'download');
@@ -80,6 +71,7 @@ abstract class MY_Controller extends CI_Controller
 			$vars,
 			TRUE);
 
+		$vars['language'] = $this->_get_language();
 		$vars['html_head'] = $this->load->view('html_head', $vars, TRUE);
 		$vars['header'] = $this->load->view('header', $vars, TRUE);
 		$vars['menu'] = $this->load->view('menu', $vars, TRUE);
@@ -100,8 +92,8 @@ abstract class MY_Controller extends CI_Controller
 		// Gracias a los icono de http://www.iconfinder.com/icondetails/4658/16/flag_it_italy_icon
 
 		return array(
-			'Español' => array('img' => 'es.png', 'href' => strtolower(get_class($this)).'/setlanguage/spanish'),
-			'English' => array('img' => 'gb.png', 'href' => strtolower(get_class($this)).'/setlanguage/english')
+			'Español' => array('img' => 'es.png', 'href' => strtolower(get_class($this)).'/change_language/spanish'),
+			'English' => array('img' => 'gb.png', 'href' => strtolower(get_class($this)).'/change_language/english')
 			);
 	}
 
@@ -112,17 +104,48 @@ abstract class MY_Controller extends CI_Controller
 	 * @return void
 	 * @author Jorge Miquélez
 	 **/
-	function setlanguage($code = 'spanish')
+	function change_language($code = 'spanish')
 	{
-		$this->session->set_userdata('language', $code);
+		$this->_set_language($code);
 
-		$url_back = '';
-
-		if ( isset($_GET['back']) )
-			$url_back = $_GET['back'];
+		$url_back = ( isset($_GET['back']) ) ? $_GET['back']:'';
 
 		redirect($url_back);
 	}
+
+	/**
+	 * Obtiene el nombre del idioma de la sesión actual.
+	 *
+	 * @return	string	Nombre del idioma (e.g. spanish, english...)
+	 * @author	Jorge Miquélez
+	 **/
+	protected function _get_language()
+	{
+		if ( $this->session->userdata('language') ) return $this->session->userdata('language');
+
+		return $this->config->item('language');
+	}
+
+	/**
+	 * Fija el idioma de la sesión actual.
+	 *
+	 * @param	string	$language	Nombre del idioma (e.g. spanish, english...)
+	 * @return	boolean	Si el idioma ha cambiado en la sesión.
+	 * @author	Jorge Miquélez
+	 **/
+	protected function _set_language($language='spanish')
+	{
+		if ( $this->_get_language() != $language )
+		{
+			$this->session->set_userdata( 'language', $language );
+			$this->config->set_item('language', $language);
+			print_debug($this->config->item('language'), 'Idioma');
+			return TRUE;
+		}
+
+		return FALSE;
+	}
+
 
 	/**
 	 * Devuelve el array de scripts por defecto del sitio,
@@ -189,8 +212,8 @@ abstract class MY_Controller extends CI_Controller
 		return array(
 			'assets/js/jquery-1.9.1.js',
 			'assets/js/jquery-ui-1.10.1.custom.js',
-			'assets/js/jquery.ui.datepicker-'.$this->language.'.js',	
-			'assets/js/language/'.$this->language.'.js',
+			'assets/js/jquery.ui.datepicker-'.$this->_get_language().'.js',	
+			'assets/js/language/'.$this->_get_language().'.js',
 			'assets/js/login/login.js',
 			'assets/js/ui.js'
 			);
@@ -212,7 +235,6 @@ abstract class MY_Controller extends CI_Controller
 			'assets/css/style.css'
 			);
 	}
-
 
 }
 

@@ -181,7 +181,7 @@ class Crup extends MY_Controller
 				'assets/js/google.js',
 				'assets/js/cuadro_rutas.js',
 				'assets/js/crup/edit.js',
-				'assets/js/language/'.$this->language.'.js'
+				'assets/js/language/'.$this->_get_language().'.js'
 				)
 			);
 	}
