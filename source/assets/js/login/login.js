@@ -99,7 +99,7 @@ $(function()
 
 	$( "#login-form" ).dialog({
 		autoOpen: false,
-		height: 280,
+		height: 300,
 		width: 450,
 		modal: true,
 		buttons: [
@@ -142,8 +142,8 @@ $(function()
 
 	$( "#logout-form" ).dialog({
 		autoOpen: false,
-		height: 140,
-		width: 355,
+		height: 160,
+		width: 400,
 		modal: true,
 		buttons: [
 			{
