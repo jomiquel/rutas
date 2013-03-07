@@ -23,12 +23,8 @@ $(function()
 	{
 		tips
 			.html( t )
-			.addClass( "ui-state-highlight" )
+			.addClass( "error" )
 			.show();
-
-		setTimeout(function() {
-			tips.removeClass( "ui-state-highlight", 1500 );
-			}, 500 );
 	}
 
 
