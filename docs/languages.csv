@@ -21,8 +21,8 @@
 ###########################################################################
 
 
-;/home/jorge/workspace/r2/rutas/code/application/language/spanish/routes_lang.php;/home/jorge/workspace/r2/rutas/code/application/language/english/routes_lang.php
-;/home/jorge/workspace/r2/rutas/code/assets/js/language/spanish.js;/home/jorge/workspace/r2/rutas/code/assets/js/language/english.js
+;/home/jorge/workspace/r3/routes/source/application/language/spanish/routes_lang.php;/home/jorge/workspace/r3/routes/source/application/language/english/routes_lang.php
+;/home/jorge/workspace/r3/routes/source/assets/js/language/spanish.js;/home/jorge/workspace/r3/routes/source/assets/js/language/english.js
 
 
 ;;main
@@ -36,14 +36,21 @@ header_title;Rutas por carretera;Road routes
 
 
 ;;init
+what_label;qué es Roads;what is Roads
+faqs_label;FAQs;FAQs
+copyright_label;copyright;copyright
+privacy_label;política de privacidad;privacy politic
 init_label;Inicio;Home
-init_welcome_message;Bienvenido a \\'Rutas por carretera\\', una aplicación que te permite planificar las rutas y trayectos de tus viajes.</p><p>¿Quieres probar la aplicación y crear una ruta? Elige la opción \\'Nueva\\' del menú, crea la ruta con su origen, su destino y sus puntos de paso. Podrás ver el resultado de tu ruta de pruebas.</p><p>¿Quieres guardar tus rutas para poder recuperarlas y visualizarlas más adelante? ¿Quieres descargar un archivo compatible con tu navegador GPS? Entonces crea una cuenta en la aplicación para poder guardar y recuperar las rutas que definas. Regístrate, ¡es gratis!</p><p>Aquí puedes ver algunas de las rutas creadas por los usuarios registrados.;Welcome to \\'Road routes\\', the application that allows you to plan the routes for your road travels.</p><p>Do you want to have a tour? Select \\'New\\' from the menu, create a new route with its origin, its destination and its waypoints. You will see how a new route result.</p><p>Do you want to save your routes, and get them back and review then in a while? Do you want to download a file for using with your GPS device? Then sign you up and your routes may be saved and recovered in the future. ¡It\\'s free!</p><p>Here you can see some routes created by signed users.
+init_welcome_message;Bienvenido a \\'Rutas por carretera\\', una aplicación que te permite planificar las rutas y trayectos de tus viajes.;Welcome to \\'Road routes\\', the application that allows you to plan the routes for your road travels.
+what_message;¿Quieres probar la aplicación y crear una ruta? Elige la opción \\'Nueva\\' del menú, crea la ruta con su origen, su destino y sus puntos de paso. Podrás ver el resultado de tu ruta de pruebas.</p><p>¿Quieres guardar tus rutas para poder recuperarlas y visualizarlas más adelante? ¿Quieres descargar un archivo compatible con tu navegador GPS? Entonces crea una cuenta en la aplicación para poder guardar y recuperar las rutas que definas. Regístrate, ¡es gratis!</p><p>Aquí puedes ver algunas de las rutas creadas por los usuarios registrados.;Do you want to have a tour? Select \\'New\\' from the menu, create a new route with its origin, its destination and its waypoints. You will see how a new route result.</p><p>Do you want to save your routes, and get them back and review then in a while? Do you want to download a file for using with your GPS device? Then sign you up and your routes may be saved and recovered in the future. ¡It\\'s free!</p><p>Here you can see some routes created by signed users.
 
 
 ;;login
 login_label;Entrar;Log in
 login_failure;El correo electrónico o la contraseña no son válidos, o bien no has completado el proceso de registro.</p><p>Por favor, asegúrate de que el bloqueo de mayúsculas no está activado e inténtalo de nuevo.;Either the email or password you entered is incorrect, or the regitration process has not been completed yet.</p><p>Please try again (make sure your caps lock is off).
-login_instructions;Introduce tu correo electróncio y tu contraseña;Please, enter your email address and your password.
+login_instructions;Introduce tu correo electrónico y tu contraseña;Please, enter your email address and your password.
+welcome_label;bienvenido;welcome
+forgot_password;¿Has olvidado tu contraseña?;Forgot your password?
 
 
 
@@ -53,7 +60,7 @@ logout_confirm_message;¿Desea cerrar su sesión?;Do you really want to leave yo
 
 
 ;;registration
-register_label;registrar;sign up
+register_label;regístrate;sign up
 email_label;correo electrónico;email
 password_label;contraseña;password
 passconf_label;confirmar contraseña;confirm password
@@ -68,13 +75,17 @@ to_label;a;to
 
 
 ;;contact
-contact_failures;Ha ocurrido un problema y sus comentarios no han podido ser enviados. Por favor, inténtelo de nuevo más tarde.;Had a problem and your comments could not be sent. Please try again later.
+send_label;enviar;send
+contact_label;contacto;contact
+name_label;nombre;name
+comments_label;comentarios;comment
+contact_failure;Ha ocurrido un problema y sus comentarios no han podido ser enviados. Por favor, inténtelo de nuevo más tarde.;Had a problem and your comments could not be sent. Please try again later.
 contact_success;Muchas gracias por enviar sus comentarios. Disfrute de la aplicación.;Thank you very much for sending your feedback. Enjoy the application.
 contact_instructions;Introduce tus datos de contacto y tus comentarios;Enter your contact data and your comments.
 
 
 ;;routes
-list_label;Lista;List
+list_label;rutas;routes
 routes_list;Lista de rutas;Routes list
 routes_not_found;No se han encontrado rutas disponibles;Sorry, can\\'t find any available route
 show_route_details;Mostrar detalles;View details
@@ -96,25 +107,23 @@ confirm_delete_route;¿Desea realmente eliminar la ruta \\'%s\\'?;Do you really 
 
 
 ;;crup
-create_route;Nueva;New
+create_label;Nueva;New
+create_caption;crear nueva ruta;create new route
 edit_label;Editar;Edit
+edit_caption;editar ruta;edit route
 save_label;Guardar;Save
 avoid_label;evitar;avoid
 up_label;subir;up
 down_label;bajar;down
 show_label;mostrar;show
 del_label;sup.;del.
-waypoints_label;p. de paso;waypoints
+waypoints_label;puntos de paso;waypoints
 title_label;título;title
 date_label;fecha;date
 vehicle_label;vehículo;vehicle
 description_label;descripción;description
 
 
-;;contact
-contact_label;contacto;contact
-name_label;nombre;name
-comments_label;comentarios;comment
 
 
 ;;footer
@@ -134,3 +143,4 @@ click_to_hide;pulse para ocultar marca;click to hide marker
 click_to_delete;pulse para eliminar;click to delete
 confirm_delete_waypoint;¿Desea borrar el punto de paso \\'{0}\\'?\\nEsta acción no se podrá deshacer.;Do you really want to delete the waypoint from \\'{0}\\'?\\nThis action cannot be undone.
 confirm_cancel_edit;Hay cambios que no se han guardado, y se perderán.;Some changes have not been saved, and will be lost.
+required_field;El campo \\'{0}\\' es requerido.;The \\'{0}\\' field is required.;

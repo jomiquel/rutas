@@ -1,0 +1,47 @@
+p {
+    padding-bottom:0px;
+}
+
+#route_text {
+    overflow: hidden;
+    clear: both;
+    padding: 0;
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+
+#route_title, #route_details, #route_controls {
+    float: left;
+    height: 95px;
+    padding: 0;
+}
+
+#route_title, #route_details {
+    width: 395px;
+    overflow: auto;
+    margin-right: 10px;
+}
+
+.button_style {
+	padding: 4px 13px;
+	width: 62px;
+	margin-bottom: 5px;
+}
+
+#route_details strong {
+	font-weight: bold;
+}
+
+#route_map {
+    width: 900px;
+    height: 525px;
+}
+
+#map_canvas {
+    width: 896px;
+    height: 521px;
+}
+
+#route_metrics {
+	margin-top: 6px;
+}
