@@ -1,4 +1,4 @@
-<div id="logout-form" title="<?php echo ucfirst($this->lang->line('logout_label')); ?>">
+<div id="logout-form" class="hidden" title="<?php echo ucfirst($this->lang->line('logout_label')); ?>">
 
 	<p><?php echo $this->lang->line('logout_confirm_message'); ?></p>
 

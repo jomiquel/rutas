@@ -11,7 +11,7 @@ if (!String.prototype.format) {
     };
 }
 
-$(function()
+$(document).ready(function()
 {
 	var name = $( "#email" ),
 		password = $( "#password" ),
@@ -165,13 +165,13 @@ $(function()
 	$( "#login" )
 		.click(function() {
 			tips.html( "" );
-			$( "#login-form" ).dialog( "open" );
+			$( "#login-form" ).removeClass("hidden").dialog( "open" );
 		});
 		
 
 	$( "#logout" )
 		.click(function() {
-			$( "#logout-form" ).dialog( "open" );
+			$( "#logout-form" ).removeClass("hidden").dialog( "open" );
 		});
 });
 

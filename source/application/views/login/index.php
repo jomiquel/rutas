@@ -1,4 +1,4 @@
-<div id="login-form" title="<?php echo ucfirst($this->lang->line('login_label')); ?>">
+<div id="login-form" class="hidden" title="<?php echo ucfirst($this->lang->line('login_label')); ?>">
 
 	<p><?php echo $this->lang->line('login_instructions'); ?></p>
 
