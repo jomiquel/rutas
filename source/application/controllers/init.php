@@ -39,30 +39,6 @@ class Init extends MY_Controller
 	}
 
 
-
-	/**
-	 * Muestra la vista de copyright.
-	 *
-	 * @author	Jorge Miquélez
-	 **/
-	function copyright()
-	{
-		$this->load_view('init/copyright');
-	}
-
-	
-	/**
-	 * Muestra la vista de privacidad.
-	 *
-	 * @author	Jorge Miquélez
-	 **/
-	function privacy()
-	{
-		$this->load_view('init/privacy');
-	}
-
-
-
 	/**
 	 * Devuelve una ruta al azar, en formato JSON.
 	 *
