@@ -114,14 +114,14 @@
 				</div> <!-- end of .row -->
 
 				<div id="route_controls">
-					<a href="javascript: submitData()" class="button_style"><?php echo $this->lang->line('save_label'); ?></a><br />
+					<a href="javascript: submitData()" class="button_style"><?php echo $this->lang->line('save_label'); ?></a>
 
 					<?php 
 						// El botón cancel irá a un sitio o a otro
 						// en función de si se está creando o editando.
 
 						// Si se edita una ruta, se vuelve a la ruta. Si no, se vuelve a la lista de rutas.
-						$link = ( 0 != $route->id ) ? 'routes/view': 'routes/list';
+						$link = ( 0 != $route->id ) ? 'routes/view': 'routes/index';
 
 						echo anchor($link, $this->lang->line('main_cancel'), array('class' => 'button_style')); 
 
