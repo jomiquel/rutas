@@ -88,14 +88,14 @@ $(document).ready(function()
 		{
 			allFields.addClass( "ui-state-error" );
 			
-			updateTips( validated.error_message.replace("\n", "<br />") );
+			updateTips( validated.error_message.replace("\\n", "<br />") );
 		}
 	}
 
 
 	$( "#login-form" ).dialog({
 		autoOpen: false,
-		height: 300,
+		height: 315,
 		width: 450,
 		modal: true,
 		buttons: [
@@ -164,7 +164,7 @@ $(document).ready(function()
 
 	$( "#login" )
 		.click(function() {
-			tips.html( "" );
+			tips.hide().html( "" );
 			$( "#login-form" ).removeClass("hidden").dialog( "open" );
 		});
 		

@@ -11,7 +11,7 @@ var getLanguage = function(key) {	line = {
 'init_welcome_message' : 'Welcome to \'Road routes\', the application that allows you to plan the routes for your road travels.',
 'what_message' : 'Do you want to have a tour? Select \'New\' from the menu, create a new route with its origin, its destination and its waypoints. You will see how a new route result.</p><p>Do you want to save your routes, and get them back and review then in a while? Do you want to download a file for using with your GPS device? Then sign you up and your routes may be saved and recovered in the future. ¡It\'s free!</p><p>Here you can see some routes created by signed users.',
 'login_label' : 'Log in',
-'login_failure' : 'Either the email or password you entered is incorrect, or the regitration process has not been completed yet.</p><p>Please try again (make sure your caps lock is off).',
+'login_failure' : 'Either the email or password you entered is incorrect, or the registration process has not been completed yet.\nPlease try again (make sure your caps lock is off).',
 'login_instructions' : 'Please, enter your email address and your password.',
 'welcome_label' : 'welcome',
 'forgot_password' : 'Forgot your password?',

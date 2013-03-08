@@ -23,7 +23,7 @@ abstract class MY_Controller extends CI_Controller
 	{
 		parent::__construct();
 
-		$this->form_validation->set_error_delimiters('<tr><td>&nbsp;</td><td><div class="error">', '</div></td></tr>');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
 		// Idioma de la interfaz de usuario
 		$this->lang->load('routes', $this->_get_language());

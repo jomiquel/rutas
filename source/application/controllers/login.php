@@ -56,7 +56,9 @@ class Login extends MY_Controller
 			}
 			else
 			{
-				$validated->error_message = validation_errors();
+				// Se modifican los limitadores de error generales, para mostrar
+				// en el formulario de login.
+				$validated->error_message = validation_errors('<div>','</div>');
 			}
 		}
 

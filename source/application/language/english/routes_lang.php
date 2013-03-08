@@ -29,7 +29,7 @@ $lang['what_message'] = 'Do you want to have a tour? Select \'New\' from the men
  *   Sección login
  */ 
 $lang['login_label'] = 'Log in';
-$lang['login_failure'] = 'Either the email or password you entered is incorrect, or the regitration process has not been completed yet.</p><p>Please try again (make sure your caps lock is off).';
+$lang['login_failure'] = 'Either the email or password you entered is incorrect, or the registration process has not been completed yet.\nPlease try again (make sure your caps lock is off).';
 $lang['login_instructions'] = 'Please, enter your email address and your password.';
 $lang['welcome_label'] = 'welcome';
 $lang['forgot_password'] = 'Forgot your password?';

@@ -29,7 +29,7 @@ $lang['what_message'] = '¿Quieres probar la aplicación y crear una ruta? Elige
  *   Sección login
  */ 
 $lang['login_label'] = 'Entrar';
-$lang['login_failure'] = 'El correo electrónico o la contraseña no son válidos, o bien no has completado el proceso de registro.</p><p>Por favor, asegúrate de que el bloqueo de mayúsculas no está activado e inténtalo de nuevo.';
+$lang['login_failure'] = 'El correo electrónico o la contraseña no son válidos, o bien no has completado el proceso de registro.\nPor favor, asegúrate de que el bloqueo de mayúsculas no está activado e inténtalo de nuevo.';
 $lang['login_instructions'] = 'Introduce tu correo electrónico y tu contraseña';
 $lang['welcome_label'] = 'bienvenido';
 $lang['forgot_password'] = '¿Has olvidado tu contraseña?';

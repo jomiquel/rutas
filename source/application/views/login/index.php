@@ -2,8 +2,6 @@
 
 	<p><?php echo $this->lang->line('login_instructions'); ?></p>
 
-	<p class="validateTips"></p>
-
 	<?php echo form_open('login/index'); ?>
 
 	<div class="row">
@@ -19,6 +17,8 @@
 	</div>
 
 	</form>
+
+	<p class="validateTips"></p>
 
 </div>
 <!-- end of .modal -->
