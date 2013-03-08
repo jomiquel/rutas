@@ -230,9 +230,9 @@ abstract class MY_Controller extends CI_Controller
 	protected function _get_css()
 	{
 		return array(
-			'assets/css/button.css',
+			'assets/css/reset.css',
 			'assets/css/jquery-ui-1.10.1.custom.css',
-			'assets/css/style.css'
+			'assets/css/style2.css',			
 			);
 	}
 

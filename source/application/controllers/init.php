@@ -58,23 +58,6 @@ class Init extends MY_Controller
 
 
 	/**
-	 * Devuelve el array de stylesheets específico para este controlador.
-	 *
-	 * @return array	Array con las rutas a los css.
-	 * @author Jorge Miquélez
-	 **/
-	protected function _get_css()
-	{
-		return array_merge(
-			parent::_get_css(),
-			array(
-				'assets/css/init/style.css'
-				)
-			);
-	}
-
-
-	/**
 	 * Devuelve el array de Javascripts específico para este controlador.
 	 *
 	 * @return array	Array con las rutas a los css.

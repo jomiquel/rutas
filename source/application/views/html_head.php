@@ -19,16 +19,13 @@ if (isset($js)) foreach ($js as $script)
 		<script type="text/javascript" src="<?php echo $script; ?>"></script>
 		<?php
 	}
-/*
+
 if (isset($css)) foreach ($css as $style) 
 	{
 		?>
 		<link rel="stylesheet" type="text/css" media="all" href="<?php echo $style; ?>" />
 		<?php
 	}
-*/
- ?>
 
-		<link rel="stylesheet" type="text/css" media="all" href="assets/css/reset.css" />
-		<link rel="stylesheet" type="text/css" media="all" href="assets/css/jquery-ui-1.10.1.custom.css" />
-		<link rel="stylesheet" type="text/css" media="all" href="assets/css/style2.css" />
+?>
+
