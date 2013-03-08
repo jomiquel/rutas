@@ -212,7 +212,7 @@ abstract class MY_Controller extends CI_Controller
 		return array(
 			'assets/js/jquery-1.9.1.js',
 			'assets/js/jquery-ui-1.10.1.custom.js',
-			'assets/js/jquery.ui.datepicker-'.$this->_get_language().'.js',	
+			'assets/js/language/jquery.ui.datepicker-'.$this->_get_language().'.js',	
 			'assets/js/language/'.$this->_get_language().'.js',
 			'assets/js/login/login.js',
 			'assets/js/ui.js'

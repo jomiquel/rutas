@@ -14,7 +14,8 @@ class Init extends MY_Controller
 	 */
 	function index()
 	{
-		$this->load_view('init/index');
+		$data['js'][] = 'assets/js/init/random_route.js';
+		$this->load_view('init/index', $data);
 	}
 
 	/**
@@ -69,9 +70,8 @@ class Init extends MY_Controller
 			parent::_get_js(),
 			array(
 				'https://maps.googleapis.com/maps/api/js?sensor=false',
-				'assets/js/google.js',
-				'assets/js/cuadro_rutas.js',
-				'assets/js/init/script.js'
+				'assets/js/maps/google.js',
+				'assets/js/maps/cuadro_rutas.js'
 				)
 			);
 	}

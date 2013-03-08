@@ -161,10 +161,9 @@ class Crup extends MY_Controller
 			parent::_get_js(),
 			array(
 				'https://maps.googleapis.com/maps/api/js?sensor=false',
-				'assets/js/google.js',
-				'assets/js/cuadro_rutas.js',
+				'assets/js/maps/google.js',
+				'assets/js/maps/cuadro_rutas.js',
 				'assets/js/crup/edit.js',
-				'assets/js/language/'.$this->_get_language().'.js'
 				)
 			);
 	}

@@ -29,7 +29,6 @@ class Routes extends MY_Controller
 		// Se leen las rutas del model.
 		$data['routes'] = $this->routes->get_list($this->logged_user, $offset, $this->routes_per_page);
 		$data['js'][] = 'assets/js/routes/list.js';
-		$data['css'][] = 'assets/css/routes/list.css';
 		$data['pagination'] = $this->_get_pagination();
 
 		// Se muestra la vista.
@@ -69,7 +68,6 @@ class Routes extends MY_Controller
 		if ( ! $data['route'] ) redirect('');
 
 		$data['js'][] = 'assets/js/routes/view.js';
-		$data['css'][] = 'assets/css/routes/view.css';
 
 		// Se muestra la vista
 		$this->load_view('routes/view', $data);
@@ -147,8 +145,8 @@ class Routes extends MY_Controller
 			parent::_get_js(),
 			array(
 				'https://maps.googleapis.com/maps/api/js?sensor=false',
-				'assets/js/google.js',
-				'assets/js/cuadro_rutas.js'
+				'assets/js/maps/google.js',
+				'assets/js/maps/cuadro_rutas.js'
 				)
 			);
 	}

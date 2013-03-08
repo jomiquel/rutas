@@ -5,11 +5,11 @@ var getLanguage = function(key) {	line = {
 'header_title':'Rutas por carretera',
 'what_label':'qué es Roads',
 'faqs_label':'FAQs',
-'copyright_label':'copyright',
 'privacy_label':'política de privacidad',
 'init_label':'Inicio',
 'init_welcome_message':'Bienvenido a \'Rutas por carretera\', una aplicación que te permite planificar las rutas y trayectos de tus viajes.',
 'what_message':'¿Quieres probar la aplicación y crear una ruta? Elige la opción \'Nueva\' del menú, crea la ruta con su origen, su destino y sus puntos de paso. Podrás ver el resultado de tu ruta de pruebas.</p><p>¿Quieres guardar tus rutas para poder recuperarlas y visualizarlas más adelante? ¿Quieres descargar un archivo compatible con tu navegador GPS? Entonces crea una cuenta en la aplicación para poder guardar y recuperar las rutas que definas. Regístrate, ¡es gratis!</p><p>Aquí puedes ver algunas de las rutas creadas por los usuarios registrados.',
+'version_label':'versión',
 'login_label':'Entrar',
 'login_failure':'El correo electrónico o la contraseña no son válidos, o bien no has completado el proceso de registro.\nPor favor, asegúrate de que el bloqueo de mayúsculas no está activado e inténtalo de nuevo.',
 'login_instructions':'Introduce tu correo electrónico y tu contraseña',
@@ -83,4 +83,5 @@ var getLanguage = function(key) {	line = {
 'confirm_delete_waypoint':'¿Desea borrar el punto de paso \'{0}\'?\nEsta acción no se podrá deshacer.',
 'confirm_cancel_edit':'Hay cambios que no se han guardado, y se perderán.',
 'required_field':'El campo \'{0}\' es requerido.',
+'copyright_label':'copyright',
 };return line[key];};
