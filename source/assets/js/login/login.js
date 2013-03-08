@@ -92,6 +92,17 @@ $(document).ready(function()
 		}
 	}
 
+	function showLogin()
+	{
+		tips.hide().html( "" );
+		$( "#login-form" ).removeClass("hidden").dialog( "open" );
+	}
+
+	function showLogout()
+	{
+		$( "#logout-form" ).removeClass("hidden").dialog( "open" );
+	}
+
 
 	$( "#login-form" ).dialog({
 		autoOpen: false,
@@ -163,15 +174,16 @@ $(document).ready(function()
 
 
 	$( "#login" )
-		.click(function() {
-			tips.hide().html( "" );
-			$( "#login-form" ).removeClass("hidden").dialog( "open" );
-		});
+		.click(showLogin);
 		
 
 	$( "#logout" )
-		.click(function() {
-			$( "#logout-form" ).removeClass("hidden").dialog( "open" );
-		});
+		.click(showLogout);
+
+	if (typeof show_login !== 'undefined') {
+		if ( show_login ) showLogin();
+	}
+
+
 });
 

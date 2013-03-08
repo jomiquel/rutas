@@ -14,6 +14,9 @@ class Init extends MY_Controller
 	 */
 	function index()
 	{
+		if ( isset($_GET['show_login'] ) )
+			$data['show_login'] = $_GET['show_login'];
+
 		$data['js'][] = 'assets/js/init/random_route.js';
 		$this->load_view('init/index', $data);
 	}

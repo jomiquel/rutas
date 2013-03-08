@@ -19,4 +19,7 @@
 
 <script type="text/javascript">
 var getRoute=function(f){$.get("<?php echo site_url('init/get_random_route'); ?>",{},f);};
+<?php if ( isset($show_login) ) : ?>
+var show_login = true;
+<?php endif; ?>
 </script>

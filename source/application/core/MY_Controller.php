@@ -38,7 +38,7 @@ abstract class MY_Controller extends CI_Controller
 		if ( ! $this->site_access->is_user_logged_in() AND ! in_array(strtolower(get_class($this)), $unlocked))
 		{
 			// ... hay que loguearse!!
-			redirect('login/');
+			redirect('init/index?show_login=true');
 		}
 
 	}
