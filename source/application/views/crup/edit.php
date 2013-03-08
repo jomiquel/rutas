@@ -8,21 +8,21 @@
 
 		<?php echo form_open($form_action); ?>
 
-			<input type="hidden" name="id" value="<?php echo set_value('id', $route->id); ?>" />
-			<input type="hidden" name="user_id" value="<?php echo set_value('user_id', $route->user_id); ?>" />
-			<input type="hidden" name="waypoints" value="<?php echo set_value('waypoints', json_encode($route->waypoints)); ?>" />
+			<input type="hidden" name="id" value="<?php echo $route->id; ?>" />
+			<input type="hidden" name="user_id" value="<?php echo $route->user_id; ?>" />
+			<input type="hidden" name="waypoints" value="<?php echo json_encode($route->waypoints); ?>" />
 
 			<div id="route_data">
 
 				<div class="row">
 					<label for="title"><?php echo ucfirst($this->lang->line('title_label')).':<span class="required">*</span>'; ?></label>
-					<input name="title" type="text" value="<?php echo set_value('title', $route->title); ?>" />
+					<input name="title" type="text" value="<?php echo $route->title; ?>" />
 					<?php echo form_error('title'); ?>
 				</div> <!-- end of .row -->
 
 				<div class="row">
 					<label for="date"><?php echo ucfirst($this->lang->line('date_label')).':<span class="required">*</span>'; ?></label>
-					<input name="date" type="text" class="datepicker" value="<?php echo set_value('date', $route->date); ?>" />
+					<input name="date" type="text" class="datepicker" value="<?php echo $route->date; ?>" />
 					<?php echo form_error('date'); ?>
 				</div>
 
@@ -34,7 +34,7 @@
 		    				type="radio" 
 		    				name="vehicle" 
 		    				value="1" 
-		    				<?php echo set_radio('vehicle', '1', ($route->vehicle == 1)); ?>
+		    				<?php if ($route->vehicle == 1) echo 'checked="checked"'; ?>
 		    			>
 		    			<?php echo ucfirst($this->lang->line('car_label')); ?>
 		    			&nbsp;&nbsp;
@@ -42,7 +42,7 @@
 							type="radio" 
 							name="vehicle" 
 							value="2" 
-		    				<?php echo set_radio('vehicle', '2', ($route->vehicle == 2)); ?>
+		    				<?php if ($route->vehicle == 2) echo 'checked="checked"'; ?>
 						>
 						<?php echo ucfirst($this->lang->line('bike_label')); ?>
 					</label>
@@ -55,7 +55,8 @@
 	    				name="avoid_highways" 
 	    				type="checkbox" 
 	    				value="1" 
-	    				<?php echo set_checkbox('avoid_highways', '1', ($route->avoid_highways == 1)); ?> >
+		    			<?php if ($route->avoid_highways == 1) echo 'checked="checked"'; ?>
+		    			>
 	    				<?php echo ucfirst($this->lang->line('avoid_label')).' '.$this->lang->line('highways_label'); ?>
 	    			</input>
 					<br />
@@ -63,7 +64,8 @@
 	    				name="avoid_tolls" 
 	    				type="checkbox" 
 	    				value="2" 
-	    				<?php echo set_checkbox('avoid_tolls', '2', ($route->avoid_tolls == 1)); ?> >
+		    			<?php if ($route->avoid_tolls == 1) echo 'checked="checked"'; ?>
+		    			>
 	    				<?php echo ucfirst($this->lang->line('avoid_label')).' '.$this->lang->line('tolls_label'); ?>
 	    			</input>
 
@@ -71,7 +73,7 @@
 
 				<div class="row">
 					<label for="description"><?php echo ucfirst($this->lang->line('description_label')).': '; ?></label>
-					<textarea name="description"><?php echo set_value('description', $route->description); ?></textarea>
+					<textarea name="description"><?php echo $route->description; ?></textarea>
 				</div> <!-- end of .row -->
 
 				<div class="row">
