@@ -410,3 +410,21 @@ td.delete_waypoint {
 #view p {
     padding: 10px 0;
 }
+
+
+/* COPYRIGHT */
+
+#copyright h1, #privacy h1 {
+    margin-bottom: 20px;
+}
+
+#copyright p, #copyright a,
+#privacy p, #privacy a {
+    margin: 5px 0;
+    font-size: 10px;
+}
+
+#copyright h4,
+#privacy h4 {
+    margin-top: 10px;
+}

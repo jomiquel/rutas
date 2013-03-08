@@ -29,7 +29,7 @@ abstract class MY_Controller extends CI_Controller
 		$this->lang->load('routes', $this->_get_language());
 		
 		// lista de controladores que no necesitan login.
-		$unlocked = array('init', 'login', 'registration', 'help', 'contact', 'download');
+		$unlocked = array('init', 'login', 'registration', 'contact', 'copyright');
 
 		// Se recupera el usuario logueado, si lo hay.
 		$this->logged_user = $this->site_access->get_user();
