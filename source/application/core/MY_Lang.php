@@ -21,12 +21,8 @@ class MY_Lang extends CI_Lang
 	 */
 	function load($langfile = '', $idiom = '', $return = FALSE, $add_suffix = TRUE, $alt_path = '')
 	{
-		log_message('error', "Idioma: '".$idiom."'");
-
 		if ( '' == $idiom ) $idiom = get_instance()->session->userdata('language');
 		if ( ! $idiom ) $idiom = '';
-
-		log_message('error', "Idioma corregido: '".$idiom."'");
 
 		return parent::load($langfile, $idiom, $return, $add_suffix, $alt_path);
 	}
