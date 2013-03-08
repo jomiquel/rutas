@@ -4,10 +4,15 @@
 RUTA=`readlink -f $0`
 CARPETA=`dirname $RUTA`
 
+#col1: identificador del texto.
+#col2: texto en español
+#col3: texto en inglés
+#col4: Si existe, es que no debe incluirse en js
 
-while IFS=\; read col1 col2 col3
+while IFS=\; read col1 col2 col3 col4
 do
 
+	#siempre debe existir columna 3. Si no, la línea se ignora.
 	if [ "" != "${col3}" ]; then
 
 
@@ -57,10 +62,12 @@ do
 				else
 
 					echo "\$lang['${col1}'] = '${col2}';" >> $ES_PHP_FILE
-					echo "'${col1}':'${col2}'," >> $ES_JS_FILE
-
 		  			echo "\$lang['${col1}'] = '${col3}';" >> $EN_PHP_FILE
-					echo "'${col1}' : '${col3}'," >> $EN_JS_FILE
+
+					if [ "" == "${col4}" ]; then
+						echo "'${col1}':'${col2}'," >> $ES_JS_FILE
+						echo "'${col1}' : '${col3}'," >> $EN_JS_FILE
+					fi
 
 			  	fi
 			fi
