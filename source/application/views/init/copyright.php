@@ -1,4 +1,4 @@
-<div id="copyright" class="view">
+<div id="copyright">
 	
 	<h1><?php echo ucfirst($this->lang->line('copyright_label')); ?></h1>
 

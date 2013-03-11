@@ -1,4 +1,4 @@
-<div id="privacy" class="view">
+<div id="privacy">
 	
 	<h1><?php echo ucfirst($this->lang->line('privacy_label')); ?></h1>
 

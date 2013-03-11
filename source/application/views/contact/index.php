@@ -1,6 +1,9 @@
 <div id="contact" class="modal">
 
-	<h4><?php echo $this->lang->line('contact_instructions'); ?>.</h4>
+	<h1><?php echo ucfirst($this->lang->line('contact_label')); ?></h1>
+
+	<p><?php echo $this->lang->line('contact_instructions'); ?>.</p>
+	
 	<?php echo form_open('contact/index'); ?>
 
 		<div class="row">

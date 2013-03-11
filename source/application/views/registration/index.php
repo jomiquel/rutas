@@ -1,12 +1,15 @@
 <div id ="registration" class="modal">
 
-	<h4><?php 
+	<h1><?php echo ucfirst($this->lang->line('registration_label')); ?></h1>
+
+
+	<p><?php 
 			if ( isset($user) )
 				echo $this->lang->line('profile_instructions'); 
 			else
 				echo $this->lang->line('registration_instructions'); 
 		?>
-	</h4>
+	</p>
 
 	<?php echo form_open('registration/register'); ?>
 

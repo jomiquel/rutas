@@ -1,6 +1,8 @@
-<div class="modal">
+<div id="contact_success" class="modal">
 
-	<h4><?php echo $this->lang->line('contact_success'); ?></h4>
+	<h1><?php echo ucfirst($this->lang->line('contact_label')); ?></h1>
+
+	<p><?php echo $this->lang->line('contact_success'); ?></p>
 
 </div>
 <!-- end of .modal -->

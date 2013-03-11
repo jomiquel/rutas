@@ -2,7 +2,7 @@
 
 	<div class="left_pannel">
 
-		<h1><?php echo $this->lang->line('routes_list'); ?></h1>	
+		<h1><?php echo ucfirst($this->lang->line('routes_list')); ?></h1>	
 		
 
 		<div id="routes_list">
