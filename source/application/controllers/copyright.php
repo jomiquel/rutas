@@ -14,7 +14,7 @@ class Copyright extends MY_Controller
 	 * @var object
 	 **/
 	var $data = array(
-		'version' => '2.0.0',
+		'version' => '1.9.0',
 		'first_year' => 2012,
 		'actual_year' => 2013,
 		'copy_name' => 'Jorge Miquélez (jomiquel.net)',
