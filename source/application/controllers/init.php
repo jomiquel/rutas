@@ -39,7 +39,10 @@ class Init extends MY_Controller
 	 **/
 	function faqs()
 	{
-		$this->load_view('init/faqs');
+		$this->load->model('faqs_model', 'faqs');
+
+		$data['faqs'] = $this->faqs->get_list($this->session->userdata('language'));
+		$this->load_view('init/faqs', $data);
 	}
 
 
