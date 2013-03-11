@@ -1,9 +1,16 @@
 #!/bin/bash
 
-# Absolute path to this script
-RUTA=`readlink -f $0`
-CARPETA=`dirname $RUTA`
-EXEC="$CARPETA/minjsname.sh"
+# Config
+SUFIJO="$2"
 
-find -iname "*.js" -exec $EXEC {} \;
-find -iname "*.css" -exec $EXEC {} \;
+# Absolute path to this script
+RUTA=`readlink -f $1`
+CARPETA=`dirname $RUTA`
+
+filename=`basename $RUTA`
+extension="${filename##*.}"
+namealone="${filename%.*}"
+
+O_FILE="$CARPETA/$namealone.$SUFIJO.$extension"
+
+jsmin < $1 > $O_FILE
