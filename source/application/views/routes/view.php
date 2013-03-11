@@ -69,7 +69,7 @@
 
 var getRoute = function() 
 {
-	return '<?php echo json_encode($route); ?>';
+	return '<?php echo str_replace("'", "\\'", json_encode($route)); ?>';
 };
 
 </script>
