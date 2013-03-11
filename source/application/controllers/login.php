@@ -33,13 +33,13 @@ class Login extends MY_Controller
 			'error_message' => ''
 			);
 
-		if ( isset($_POST['email']) && isset($_POST['password']) )
+		if ( isset($_POST['login_email']) && isset($_POST['login_password']) )
 		{
 			if ( $this->_validate() )
 			{
 				$user = $this->users->validate_login(
-					$this->input->post('email'),
-					$this->input->post('password')
+					$this->input->post('login_email'),
+					$this->input->post('login_password')
 					);
 
 				if ( $user )
@@ -106,12 +106,12 @@ class Login extends MY_Controller
 	{
 		$config = array(
                array(
-                     'field'   => 'email', 
+                     'field'   => 'login_email', 
                      'label'   => $this->lang->line('email_label'), 
                      'rules'   => 'trim|required'
                   ),
                array(
-                     'field'   => 'password', 
+                     'field'   => 'login_password', 
                      'label'   => $this->lang->line('password_label'), 
                      'rules'   => 'required|callback_login_validation|md5'
                   )
@@ -131,8 +131,8 @@ class Login extends MY_Controller
 	function login_validation()
 	{
 		if ( $this->users->validate_login(
-					$this->input->post('email'),
-					md5($this->input->post('password'))
+					$this->input->post('login_email'),
+					md5($this->input->post('login_password'))
 					) )
 		return TRUE;
 

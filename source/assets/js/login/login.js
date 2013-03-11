@@ -13,8 +13,8 @@ if (!String.prototype.format) {
 
 $(document).ready(function()
 {
-	var name = $( "#email" ),
-		password = $( "#password" ),
+	var name = $( "#login_email" ),
+		password = $( "#login_password" ),
 		allFields = $( [] ).add( name ).add( password ),
 		tips = $( ".validateTips" );
 
@@ -126,7 +126,7 @@ $(document).ready(function()
 						$.ajax({
 							type: "POST",
 							url: $( "#login-form form" ).attr('action'),
-							data: { 'email': name.val(), 'password': password.val(), 'ajax': 1 }
+							data: { 'login_email': name.val(), 'login_password': password.val(), 'ajax': 1 }
 						}).done(callbackLogin);
 				
 					}

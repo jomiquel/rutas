@@ -5,15 +5,15 @@
 	<?php echo form_open('login/index'); ?>
 
 	<div class="row">
-		<label for="email"><?php echo ucfirst($this->lang->line('email_label')).':<span class="required">*</span>'; ?></label>
-		<input type="text" name="email" id="email" value="<?php echo set_value('email'); ?>"/>
+		<label for="login_email"><?php echo ucfirst($this->lang->line('email_label')).':<span class="required">*</span>'; ?></label>
+		<input type="text" name="login_email" id="login_email" value="<?php echo set_value('login_email'); ?>"/>
 		<?php echo form_error('email'); ?>
 	</div>
 
 	<div class="row">
-		<label for="password"><?php echo ucfirst($this->lang->line('password_label')).':<span class="required">*</span>'; ?></label>
-		<input type="password" name="password" id="password" />
-		<?php echo form_error('password'); ?>
+		<label for="login_password"><?php echo ucfirst($this->lang->line('password_label')).':<span class="required">*</span>'; ?></label>
+		<input type="password" name="login_password" id="login_password" />
+		<?php echo form_error('login_password'); ?>
 	</div>
 
 	</form>
@@ -21,4 +21,4 @@
 	<p class="validateTips"></p>
 
 </div>
-<!-- end of .modal -->
+<!-- end of #login-form -->
