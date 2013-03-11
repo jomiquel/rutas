@@ -139,7 +139,6 @@ abstract class MY_Controller extends CI_Controller
 		{
 			$this->session->set_userdata( 'language', $language );
 			$this->config->set_item('language', $language);
-			print_debug($this->config->item('language'), 'Idioma');
 			return TRUE;
 		}
 
@@ -162,10 +161,10 @@ abstract class MY_Controller extends CI_Controller
 
 		if ( ENVIRONMENT == 'production' )
 		{
-			foreach ($result as $value)
+			foreach ($result as $key => $value)
 			{
 				if ( strpos(strtolower($value), 'http') !== 0 )
-					$result = str_replace('.js', '.red.js', $result);
+					$result[$key] = str_replace('.js', '.red.js', $value);
 			}
 		}
 
@@ -188,10 +187,10 @@ abstract class MY_Controller extends CI_Controller
 
 		if ( ENVIRONMENT == 'production' )
 		{
-			foreach ($result as $value)
+			foreach ($result as $key => $value)
 			{
 				if ( strpos(strtolower($value), 'http') !== 0 )
-					$result = str_replace('.css', '.red.css', $result);
+					$result[$key] = str_replace('.css', '.red.css', $value);
 			}
 		}
 

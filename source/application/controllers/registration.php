@@ -61,14 +61,11 @@ class Registration extends MY_Controller
 				}
 				else
 				{
-						print_debug('pass not required');
 					// Se trata de una actualización del password.
 					if ( $user->password != '' )
 					{
-						print_debug('pass != null');
 						if ( ! $this->users->update($user) )
 						{
-							print_debug('user updated!');
 							//redirect('registration/reg_error', 'location');
 							return;
 						}

@@ -222,9 +222,6 @@ class Users_model extends CI_Model
 		$this->db->where('email', $user->email);
 		$this->db->update('users', $user); 
 
-		print_debug( $user, 'user');
-		print_debug( $this->db->affected_rows(), 'rows');
-		print_debug( $this->db->last_query(), 'query');
 		if ( 1 == $this->db->affected_rows() ) return $user;
 
 		return FALSE;
