@@ -1,0 +1,436 @@
+@charset "UTF-8";
+
+
+body, a {
+    color : #333;
+    font: 14px Sans, sans-serif;
+}
+
+body {
+    background-image: url('../images/background.jpg');
+    background-attachment: fixed;
+}
+
+/* CLASES GENERALES */
+
+.hidden {
+    visibility: hidden;
+    display: none;  /* necesario para las tds, que si no se muestran */
+}
+
+
+.required {
+    color: #800000;
+}
+
+input, textarea, select {
+    border: 1px solid #999;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 3px 5px;
+}
+
+form {
+    display: table;
+}
+
+.error, .warning {
+    font-size: 11px;
+    border: 2px solid;
+    padding: 3px 10px;
+    border-radius: 5px;
+}
+
+.error {
+    background-color: #f66;
+    color: #200000;
+    border-color: #800000;
+    margin-top: 10px;
+}
+
+
+.warning {
+    margin-left: 5px;
+    background-color: #ff6;
+    color: #202000;
+    border-color: #808000;
+}
+
+.row {
+    padding-top: 10px;
+}
+
+.row input, .row textarea, .row label, .row .error {
+    display: table-cell;
+}
+
+.row label {
+    vertical-align: bottom;
+}
+
+.row input, .row textarea {
+    width: 400px;
+}
+
+
+.modal h4, .modal form {
+    margin-bottom: 10px;
+}
+
+
+.modal h1 {
+    margin-bottom: 20px;
+}
+
+.modal p {
+    margin: 10px 0;
+}
+
+.left_pannel {
+    float: left;
+    width: 223px;
+    padding: 0 10px 0 0;
+    white-space: nowrap;
+}
+
+#accordion {
+    margin-top: 30px;
+}
+
+.right_pannel {
+    float: right;
+    width: 667px;
+}
+
+div.view {
+    overflow: hidden;
+}
+
+div.view, 
+div.view a, 
+div.view label, 
+div.view input
+{
+    font-size: 12px;
+}
+
+#map_canvas {
+    clear: both;
+    width: 663px;
+    height: 496px;
+    border: 2px solid #800000;
+}
+
+
+
+#inner {
+    background-image: url('../images/inner.png');
+    width: 960px;
+    margin: 0 auto;
+}
+
+
+
+
+
+/* HEADER */
+#header {
+    padding: 5px;
+    overflow: hidden;
+}
+
+#logo {
+    float: left;
+}
+
+#languages, #login_menu {
+    float: right;
+}
+
+#login_menu, #login_menu a {
+    font-size: 10px;
+}
+
+#login_menu a {
+    line-height: 27px;
+}
+
+#login_menu ul, #login_menu ul a {
+    text-align: right;
+    color: #fff;
+    line-height: normal;
+}
+
+#login_menu li {
+    display: inline-block;
+    margin-left: 3px;
+    padding: 3px 20px;
+    background-color: #627186;
+}
+
+#languages {
+    width: 80px;
+    margin-left: 15px;
+}
+
+#languages img {
+    width: 40px;
+    float: left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* MENU */
+
+#menu {
+    background-color: #627186;
+}
+
+#menu ul {
+    padding: 10px 30px;
+}
+
+#menu li {
+    margin-right: 80px;
+    display: inline-block;
+    display: -moz-inline-stack; /* hack FF 2 */
+    *display: inline; /* hack IE 7 */
+}
+
+#menu a {
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+
+/* FOOTER */
+
+#footer ul {
+    text-align: center;
+    padding: 30px;
+}
+
+#footer li {
+    margin-right: 30px;
+    display: inline-block;
+    display: -moz-inline-stack; /* hack FF 2 */
+    *display: inline; /* hack IE 7 */
+}
+
+#footer a, #footer li {
+    font-size: 11px;
+}
+
+
+
+
+/* CUSTOM */
+
+#custom {
+    padding: 30px;
+}
+
+#custom h1 {
+    font-size: 21px;
+}
+
+
+
+
+/* CONTACT */
+
+#contact textarea {
+    height: 200px;
+}
+
+
+/* INIT */
+
+#init .left_pannel {
+    background-color: #627186;
+    color: #fff;
+    font-size: 14px;
+    height: 500px;
+    padding: 10px;
+    white-space: normal;
+    width: 213px; /* tiene más padding que los demás */
+    height: 480px; /* tiene más padding que los demás */
+}
+
+#init h1 {
+    font-weight: bold;
+    margin-top: 100px;
+}
+
+#init p {
+    margin-top: 245px;
+}
+
+#init #map_canvas {
+    clear: both;
+    width: 663px;
+    height: 496px;
+}
+
+/* LIST */
+
+
+#routes_list {
+    margin-top: 30px;
+}
+
+#routes_list li.activo {
+    font-weight: bold;
+}
+
+#routes_list li.sepasa {
+    text-decoration: underline;
+}
+
+#route_controls {
+    padding: 10px 0;
+}
+
+#route_controls a {
+    margin-right: 5px;
+}
+
+
+
+
+
+#pagination {
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+ul.pagination {
+    text-align: center;
+}
+
+ul.pagination span, ul.pagination a {
+    font: 12px Arial;
+    padding: 3px 5px;
+}
+
+ul.pagination li {
+    border: 1px solid #000044;
+    margin: 1px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    background-color: #e0e8ff;
+    display: inline-block;
+    display: -moz-inline-stack; /* hack FF 2 */
+    *display: inline; /* hack IE 7 */
+}
+
+ul.pagination li.activo {
+    background-color: #fff0de;
+}
+
+
+/* CRUP */
+#edit input {
+    width: auto;
+}
+
+#edit input[type=text], #edit textarea {
+    width: 211px;
+}
+
+.datepicker {
+    width: auto;
+}
+
+#edit textarea {
+    height: 100px;
+}
+
+#waypoints {
+    height: 100px;
+    overflow-y: scroll;
+    margin-bottom: 10px;
+    border: 1px solid #627186;
+    background-color: #fff;
+}
+
+#waypoints td {
+    padding: 2px 3px;
+}
+
+#waypoints span {
+    height: 4px;
+    display: block;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+td.move_waypoint, td.show_waypoint, td.delete_waypoint {
+    width: 10px;
+    background-image: url('../images/wp_icons.png');
+    background-repeat: no-repeat;
+}
+
+td.description {
+    max-width: 152px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+td.delete_waypoint {
+    background-position: -63px 1px;
+}
+
+
+
+/* VIEW */
+
+#view .left_pannel {
+    white-space: normal;
+}
+
+#view strong {
+    font-weight: bold;
+    display: block;
+}
+
+#view p {
+    padding: 10px 0;
+}
+
+
+/* COPYRIGHT */
+
+#copyright h1, #privacy h1 {
+    margin-bottom: 20px;
+}
+
+#copyright p, #copyright a,
+#privacy p, #privacy a {
+    margin: 5px 0;
+    font-size: 10px;
+}
+
+#copyright h4,
+#privacy h4 {
+    margin-top: 10px;
+}
